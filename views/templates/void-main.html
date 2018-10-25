@@ -1,0 +1,17 @@
+{% extends "views/templates/base.html" %}
+{% block title %} 系统 {% endblock %}
+{% block head %}
+<style>
+
+</style>
+{% endblock %}
+{% block bodyclass %} skin-blue fixed sidebar-collapse sidebar-mini {% endblock %}
+{% block body %}
+{% include "views/templates/header.html" %}
+{% include "views/templates/aside.html" %}
+
+
+<div class="content-wrapper" id="{% block contentid %} {% endblock %}">
+{% block content %}{% endblock %}
+</div>
+{% endblock %}

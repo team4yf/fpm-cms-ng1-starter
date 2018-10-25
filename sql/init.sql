@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS fpm_project CHARACTER SET utf8 COLLATE utf8_general_ci;
+COMMIT;

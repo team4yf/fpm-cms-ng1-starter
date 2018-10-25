@@ -1,0 +1,9 @@
+/node_modules
+/.vscode
+*.log
+config.json
+/db.lock
+/mysqldata
+/logs
+ngrok
+public/lib

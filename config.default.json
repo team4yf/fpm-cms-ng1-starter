@@ -1,0 +1,20 @@
+{
+    "server":{
+        "port": 9008
+    },
+    "mysql":
+    {
+        "host": "localhost",
+        "database": "fpm_project",
+        "username": "root",
+        "password": "root",
+        "showSql": true
+    },
+    "mqttserver":
+    {
+        "host": "mqtt.yunplus.io",
+        "port": 1883,
+        "username": "admin",
+        "password": "123123123"
+    }
+}

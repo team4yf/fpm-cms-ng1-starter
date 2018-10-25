@@ -1,0 +1,39 @@
+menus:
+  - type: '-'
+    title: '控制台'
+
+  - title: '仪表板'
+    icon: 'dashboard'
+    path: '/dashboard'
+    page: 'pages/dashboard.html'
+  
+  - type: '-'
+    title: '灯具管理'
+
+  - title: '设备管理'
+    icon: 'lightbulb-o'
+    path: '/device'
+    page: 'pages/device.html'
+
+  - title: '灯具控制'
+    icon: 'toggle-off'
+    path: '/control'
+    page: 'pages/control.html'
+
+  - title: '场景策略'
+    icon: 'hourglass-2'
+    path: '/scene'
+    page: 'pages/scene.html'
+
+  - type: '-'
+    title: '监控管理'
+
+  - title: '监控视频'
+    icon: 'video-camera'
+    path: '/camera/screen'
+    page: 'pages/camera-screen.html'
+
+  - title: '点位管理'
+    icon: 'list-ul'
+    path: '/camera'
+    page: 'pages/camera.html'  

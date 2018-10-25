@@ -1,0 +1,84 @@
+{% extends "views/templates/void-main-with-footer.html" %}
+{% block title %} 监控视屏 {% endblock %}
+
+{% block content %}
+<div ng-app="app">
+    <div ng-controller="MainControll" ng-cloak>
+    <section class="content-header">
+      <h1>
+          监控视屏
+      </h1>
+      <!-- <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">Simple</li>
+      </ol> -->
+    </section>
+  
+      <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">项目</h3>
+            </div>
+            <div class="box-body no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a href="#"><i class="fa fa-folder-open-o"></i> 高邮光明小镇项目
+                  <span class="label label-primary pull-right">12</span></a>
+                </li>
+                <li><a href="#"><i class="fa fa-folder-o"></i> 瑞威光电项目</a></li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          
+          <div class="callout callout-info">
+            <h4>提示</h4>
+
+            <p>点击右侧 <i class="fa fa-plus"></i> 添加视屏通道.</p>
+          </div>
+
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            {% for i in [1,2,3,4] %}
+            <div class="col-md-6">
+              <div class="box">
+                <div class="box-header with-border">点位1
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" ><i class="fa fa-plus"></i></button>
+                  </div>
+                </div>
+                <div class="box-body no-padding">
+                  <div style="min-height:300px; background: grey; text-align: center;">
+                    <i class="fa fa-file-video-o" style="line-height: 300px; font-size: 70px;"></i>
+                  </div>
+                </div>                
+              </div>
+            </div>
+            {% endfor %}
+            
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+{% block js %}
+<script>
+  var app = angular.module('app',[]);
+  app.controller('MainControll', [ '$scope', '$http', function($scope, $http){
+
+  }]);
+  
+</script>
+{% endblock %}
