@@ -34,11 +34,11 @@ A web cms use yf-fpm-server.
 ## Install
 
 ```
-$ yarn && yarn run build
+$ npm i && npm run build
 ```
 
 ## Dev
 
 ```
-$ yarn run docker && yarn run dev
+$ npm run docker && npm run dev
 ```
