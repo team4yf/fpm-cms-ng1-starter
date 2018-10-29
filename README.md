@@ -42,3 +42,8 @@ $ npm i && npm run build
 ```
 $ npm run docker && npm run dev
 ```
+
+## Backup db
+```
+$ docker exec -it 06d mysqldump -uroot -proot test > /var/backup/test.sql
+```

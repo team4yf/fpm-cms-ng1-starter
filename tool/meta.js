@@ -6,7 +6,7 @@ const table_metas = _.map(_.remove(process.argv, arg => {
                               return arg.endsWith('.json')
                             }),
                             json_path => {
-                              return require(path.join(__dirname, json_path))
+                              return require(path.join(process.cwd(), json_path))
                             });
 
 const AI_START = 1;
