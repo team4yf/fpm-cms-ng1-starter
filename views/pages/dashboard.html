@@ -1,9 +1,16 @@
 {% extends "views/templates/void-main.html" %}
 {% block title %} 数据大屏 {% endblock %}
+{% block collapse %} sidebar-collapse {% endblock %}
 {% block head %}
 <style>
 #dashboard{
-  background: #0f1865;
+  background-image: url(dashboard.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* position: fixed; */
+  /* display: block; */
 }
 #img{
   display: block;
@@ -13,27 +20,27 @@
 }
 #screen{
   padding: 20px 20px 50px;
-  background: #0f1865;
-  /* border: 2px solid #2d55a0; */
+  /* background: #3c8dbc;
   background:
-          linear-gradient(135deg, transparent 10px, #0f1865 0)
+          linear-gradient(135deg, transparent 10px, #3c8dbc 0)
           top left,
-          linear-gradient(-135deg, transparent 10px, #0f1865 0)
+          linear-gradient(-135deg, transparent 10px, #3c8dbc 0)
           top right,
-          linear-gradient(-45deg, transparent 10px, #0f1865 0)
+          linear-gradient(-45deg, transparent 10px, #3c8dbc 0)
           bottom right,
-          linear-gradient(45deg, transparent 10px, #0f1865 0)
+          linear-gradient(45deg, transparent 10px, #3c8dbc 0)
           bottom left;
 
   background-size: 50% 50%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
 
 }
 .bg-dark{
-  background: #0f1865;
+  background: #0c1c2c;
   border: 1px solid #2d55a0;
   border-radius: 10px;
   box-shadow: 0 0 50px #2d55a0;
+  opacity: 0.8;
 }
 .padding-10{
   padding: 15px 10px;
@@ -42,8 +49,7 @@
   margin-top: 20px;
 }
 #ground{
-  background: #2d55a0;
-  /* border: 2px solid #2d55a0; */
+  /* background: #2d55a0;
   background:
           linear-gradient(135deg, transparent 10px, #2d55a0 0)
           top left,
@@ -55,7 +61,7 @@
           bottom left;
 
   background-size: 50% 50%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   margin: 20px;
   padding: 16px;
 }
@@ -95,7 +101,7 @@
 
 {% block contentid %}dashboard{% endblock %}
 {% block content %}
-<div id="ground">
+<div id="ground" ng-controller="DashboardCtrl">
   <div id="screen">
     <h1 class="center text-fff light">Richer 物联网云数据看板</h1>
     <div class="row margin-top-20">
@@ -135,227 +141,11 @@
 {% endblock %}
 {% block script %}
 <script src="/lib/echarts/echarts.min.js"></script>
+<script src="/js/controller/dashboard.js"></script>
 {% endblock %}
 {% block js %}
 <script>
-  var app = angular.module('app',[]);
-echarts.init(document.getElementById('device-chart'))
-  .setOption({
-    title: {
-      text: '设备统计',
-      subtext: '更新于: 1分钟前',
-      textStyle: {
-        color: '#fff'
-      },
-    },
-    backgroundColor: '#0f1865',
-    color: ['#3398DB', '#006666'],
-    textStyle: {
-      color: '#fff'
-    },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'shadow'
-      }
-    },
-    legend: {
-      data: ['全部', '在线'],
-      textStyle: {
-        color: '#fff'
-      },
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-    },
-    xAxis: {
-      type: 'value',
-      boundaryGap: [0, 0.01]
-    },
-    yAxis: {
-      type: 'category',
-      data: ['灯具', '监控', 'LED']
-    },
-    series: [
-      {
-        name: '全部',
-        type: 'bar',
-        data: [10, 20, 8]
-      },
-      {
-        name: '在线',
-        type: 'bar',
-        data: [6, 18, 5]
-      }
-    ]
-  });
-
-
-
-  echarts.init(document.getElementById('month-chart'))
-  .setOption({
-    title: {
-      text: '月度能耗',
-      subtext: '单位( KW )',
-      textStyle: {
-        color: '#fff'
-      },
-    },
-    backgroundColor: '#0f1865',
-    color: ['#3398DB', '#006666', '#666699'],
-    textStyle: {
-      color: '#fff'
-    },
-    tooltip : {
-        trigger: 'axis',
-        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-        }
-    },
-    legend: {
-      data: ['2016', '2017', '2018',],
-      textStyle: {
-        color: '#fff'
-      },
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis : [
-        {
-            type : 'category',
-            data : ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            axisTick: {
-                alignWithLabel: true
-            }
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value'
-        }
-    ],
-    series : [
-      {
-        name: '2018',
-        type: 'bar',
-        data: [10, 20, 8, 10, 20, 8, 10, 20, 8, 10, 20, 8]
-      },
-      {
-        name: '2017',
-        type: 'bar',
-        data: [10, 20, 8, 10, 20, 8, 10, 20, 8, 10, 20, 8]
-      },
-      {
-        name: '2016',
-        type: 'bar',
-        data: [10, 20, 8, 10, 20, 8, 10, 20, 8, 10, 20, 8]
-      },
-    ]
-  });
-
-  echarts.init(document.getElementById('year-chart'))
-  .setOption({
-    title: {
-      text: '年度能耗',
-      subtext: '单位( KW )',
-      textStyle: {
-        color: '#fff'
-      },
-    },
-    backgroundColor: '#0f1865',
-    color: ['#3398DB', '#006666', '#666699'],
-    textStyle: {
-      color: '#fff'
-    },
-    tooltip : {
-        trigger: 'axis',
-        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-        }
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis : [
-        {
-            type : 'category',
-            data : ['2016', '2017', '2018'],
-            axisTick: {
-                alignWithLabel: true
-            }
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value'
-        }
-    ],
-    series : [
-      {
-        type:'bar',
-        barWidth: '60%',
-        data: [100, 200, 80,]
-      },
-      
-    ]
-  });
-
-  echarts.init(document.getElementById('alarm-chart'))
-  .setOption({
-    title : {
-        text: '告警类型',
-        textStyle: {
-          color: '#fff'
-        },
-    },
-    backgroundColor: '#0f1865',
-    color: ['#3398DB', '#006666', '#666699', '#993333'],
-    textStyle: {
-      color: '#fff'
-    },
-    tooltip : {
-      trigger: 'item',
-      formatter: "{a} <br/>{b} : {c} ({d}%)"
-    },
-    legend: {
-      orient: 'vertical',
-      left: 'right',
-      data: ['网络异常', '市电异常', '设备老化', '其它'],
-      textStyle: {
-        color: '#fff'
-      },
-    },
-    series : [
-      {
-        type: 'pie',
-        radius : '55%',
-        center: ['50%', '60%'],
-        data:[
-          {value:335, name:'网络异常'},
-          {value:310, name:'市电异常'},
-          {value:234, name:'设备老化'},
-          {value:135, name:'其它'},
-        ],
-        itemStyle: {
-          emphasis: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
-      }
-    ]
-  });
-
+"use strict";
+angular.module('app', ['fpm.c.dashboard' ])
 </script>
 {% endblock %}

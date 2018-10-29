@@ -8,23 +8,9 @@
       {% if menu.type == '-' %}
       <li class="header">{{ menu.title }}</li>
       {% else %}
-      <li><a href="{{menu.path}}"><i class="fa fa-{{menu.icon}}"></i> <span>{{ menu.title }}</span></a></li>
+      <li><a href="{{menu.url if menu.url else menu.path}}" {% if menu.url %}target="_blank"{% endif %}><i class="fa fa-{{menu.icon}}"></i> <span>{{ menu.title }}</span></a></li>
       {% endif %}
       {% endfor %}
-      <!-- <li class="header">控制台</li>
-      <li><a href="/dashboard"><i class="fa fa-dashboard"></i> <span>仪表板</span></a></li>
-
-      <li class="header">灯具管理</li>
-      <li><a href="/device"><i class="fa fa-lightbulb-o"></i> <span>设备管理</span></a></li>
-      <li><a href="/control"><i class="fa fa-toggle-off"></i> <span>灯具控制</span></a></li>
-      <li><a href="/scene"><i class="fa fa-hourglass-2"></i> <span>场景策略</span></a></li>
-
-      <li class="header">监控管理</li>
-      <li><a href="/camera/screen"><i class="fa fa-video-camera"></i> <span>监控视频</span></a></li>
-      <li><a href="/camera"><i class="fa fa-list-ul"></i> <span>点位管理</span></a></li> -->
-
-      <li class="header">系统工具</li>
-      <li><a href="/admin-lte/index.html" target="_blank"><i class="fa fa-book"></i> <span>参考页</span></a></li>
     </ul>
   </section>
   <!-- /.sidebar -->

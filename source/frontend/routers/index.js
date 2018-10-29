@@ -14,9 +14,11 @@ exports.CreateMenus = (fpm) => {
   } )
   
   _.map(nativeObject.menus, menu => {
-    const { type, title, icon, path, page } = menu;
+    const { type, title, icon, url, path, page } = menu;
     if( type == '-'){
       // it's not a url menu
+    }else if(url){
+      // it's outlink
     }else{
       router.get(path, async ctx => {
         await ctx.render(page);
