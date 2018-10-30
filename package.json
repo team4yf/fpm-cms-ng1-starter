@@ -8,6 +8,7 @@
     "test": "./node_modules/.bin/mocha test/*.test.js",
     "proxy": "ngrok http 9008",
     "bot": "node fake/bot.js",
+    "backup": "docker exec -it fpm-cms-ng1-starter_db_1 mysqldump -uroot -proot fpm_project > backup/fpm_project.sql",
     "docker": "docker-compose -f docker-compose.dev.yml up --build -d",
     "docker:restart": "docker-compose -f docker-compose.dev.yml down && npm run docker",
     "build": "gulp"

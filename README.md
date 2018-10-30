@@ -77,33 +77,3 @@ $ cp config.default.json config.json
 ```
 $ npm run docker && npm run dev
 ```
-
-## Backup db
-```
-$ docker exec -it 06d mysqldump -uroot -proot test > /var/backup/test.sql
-```
-
-## Manual
-
-- 1) How to create a function module
-  - 1.1 Create dataset
-
-    Use `tool` to create table and mock data.
-    Execute the sql.
-
-  - 1.2 Create the unit test script.
-
-    test the dataset is working on.
-
-  - 1.3 Copy view files
-
-    Copy a view/page file from the template.
-    Copy a angular controller js file.
-
-  - 1.4 Edit the menus.yml
-
-    Add the new module menu config.
-
-  - 1.5 Code the angular controller with `fpmc`
-
-
