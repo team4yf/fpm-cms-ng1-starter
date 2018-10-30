@@ -7,12 +7,12 @@ exports.CreateMenus = (fpm) => {
 
   const menusYML = path.join(fpm.get('CWD'), 'menus.yml');
   const nativeObject = YAML.load(menusYML);
-  
+
   fpm.app.use( async(ctx, next) => {
     _.extend(ctx.state, { menus: nativeObject.menus});
     await next();
   } )
-  
+
   _.map(nativeObject.menus, menu => {
     const { type, title, icon, url, path, page } = menu;
     if( type == '-'){

@@ -8,7 +8,7 @@ Stacks:
 - Database: `Mysql 5.6`.
 - Web Language: `Nodejs 8.11`.
 - BE Framework: `yf-fpm-server`.
-- Template engine: `nunjucks`.
+- Template engine: `nunjucks` [See Detail](https://nunjucks.bootcss.com/templating.html).
 - UI Lib: `AdminLte`.
 - FE Framework: `Angularjs1.x` & `jQuery` & `fpmc-ng1`.
 

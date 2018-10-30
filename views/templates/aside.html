@@ -7,7 +7,7 @@
       {% for menu in menus %}
       {% if menu.type == '-' %}
       <li class="header">{{ menu.title }}</li>
-      {% else %}
+      {% elif menu.invisible != true %}
       <li><a href="{{menu.url if menu.url else menu.path}}" {% if menu.url %}target="_blank"{% endif %}><i class="fa fa-{{menu.icon}}"></i> <span>{{ menu.title }}</span></a></li>
       {% endif %}
       {% endfor %}

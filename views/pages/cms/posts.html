@@ -1,12 +1,12 @@
 {% extends "views/templates/void-main-with-footer.html" %}
-{% block title %} 场景策略 {% endblock %}
+{% block title %} 文章管理 {% endblock %}
 
 {% block content %}
 <div ng-app="app">
-  <div ng-controller="MainControll" ng-cloak>
+  <div ng-controller="PostCtrl" ng-cloak>
     <section class="content-header">
       <h1>
-          场景策略
+        文章管理
       </h1>
       <!-- <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -18,27 +18,10 @@
       <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-md-3">
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">项目</h3>
-            </div>
-            <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-folder-open-o"></i> 高邮光明小镇项目
-                  <span class="label label-primary pull-right">12</span></a>
-                </li>
-                <li><a href="#"><i class="fa fa-folder-o"></i> 瑞威光电项目</a></li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          
-        </div>
-        <div class="col-md-9">
+        <div class="col-md-12">
           <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">策略列表</h3>
+              <h3 class="box-title">文章列表</h3>
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
                   <input type="text" name="table_search" class="form-control pull-right" placeholder="搜索">
@@ -50,37 +33,41 @@
               </div>
             </div>
             <div class="mailbox-controls">
-              <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
               <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-play"></i></button>
-                <!-- <button type="button" class="btn btn-default btn-sm"><i class="fa fa-power-off"></i></button> -->
+                <button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus"></i> 新建</button>
               </div>
               <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                <button type="button" class="btn btn-primary btn-xs"><i class="fa fa-genderless"></i> 已发布</button>
+                <button type="button" class="btn btn-warning btn-xs"><i class="fa fa-genderless"></i> 草稿箱</button>
+                <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-genderless"></i> 垃圾箱</button>
               </div>
               <!-- /.pull-right -->
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
-              <table class="table table-hover table-striped table-bordered">
+              <table class="table table-hover table-striped">
                 <tr>
                   <th style="width: 10px">#</th>
-                  <th>策略名称</th>
-                  <th>生效时间</th>
-                  <th>失效时间</th>
-                  <th>上次执行时间</th>
-                  <th>执行次数</th>
-                  <th>是否启用</th>
+                  <th>标题</th>
+                  <th>分类</th>
+                  <th>作者</th>
+                  <th>点击量</th>
+                  <th>评论数</th>
+                  <th>状态</th>
+                  <th>发布时间</th>
+                  <th>-</th>
                 </tr>
                 {% for i in [1,2,3,4,5,6,7,8] %}
                 <tr>
                   <td><input type="checkbox"></td>
-                  <td>开灯10：00</td>
-                  <td>2018-09-04 09:08:33</td>	
-                  <td>2018-09-08 09:08:42</td>	
-                  <td>2018-09-08 09:08:42</td>	
-                  <td>10</td>	
-                  <td><i class="fa fa-check text-success"></i></td>	
+                  <td>Hello there</td>
+                  <td>Unrecgnized</td>
+                  <td>Wangfan</td>
+                  <td>1000+</td>
+                  <td>1</td>
+                  <td>Trashed</td>
+                  <td>Days Ago</td>
+                  <td>-</td>
                 </tr>
                 {% endfor %}
               </table>
@@ -100,20 +87,16 @@
         </div>
       </div>
     </section>
-          
   </div>
 </div>
 {% endblock %}
 
 {% block script %}
-
+<script src="/js/controller/device.js"></script>
 {% endblock %}
 {% block js %}
 <script>
-  var app = angular.module('app',[]);
-  app.controller('MainControll', [ '$scope', '$http', function($scope, $http){
-
-  }]);
-  
+"use strict";
+angular.module('app', ['fpm.c.device' ])
 </script>
 {% endblock %}

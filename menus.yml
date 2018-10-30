@@ -1,32 +1,45 @@
 menus:
+
+  - invisible: true
+    path: '/cms/login'
+    page: 'pages/login.html'
+
+  - invisible: true
+    path: '/cms'
+    page: 'pages/login.html'
+
+  - invisible: true
+    path: '/'
+    page: 'pages/login.html'
+
   - type: '-'
     title: '控制台'
 
   - title: '仪表板'
     icon: 'dashboard'
-    path: '/dashboard'
-    page: 'pages/dashboard.html'
+    path: '/cms/dashboard'
+    page: 'pages/cms/dashboard.html'
 
   - type: '-'
     title: '内容管理'
 
   - title: '文章'
     icon: 'edit'
-    path: '/posts'
-    page: 'pages/posts.html'
+    path: '/cms/posts'
+    page: 'pages/cms/posts.html'
 
   - title: '标签'
     icon: 'tags'
-    path: '/tags'
-    page: 'pages/tags.html'
+    path: '/cms/tags'
+    page: 'pages/cms/tags.html'
 
   - type: '-'
     title: '用户'
 
   - title: '用户列表'
     icon: 'users'
-    path: '/users'
-    page: 'pages/users.html'
+    path: '/cms/users'
+    page: 'pages/cms/users.html'
 
   - type: '-'
     title: '系统'

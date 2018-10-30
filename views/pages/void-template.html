@@ -1,23 +1,18 @@
 {% extends "views/templates/void-main-with-footer.html" %}
-{% block title %} 数据大屏 {% endblock %}
+{% block title %} Title Here {% endblock %}
 
 {% block content %}
-<div ng-app="app">
-  <div ng-controller="MainControll" ng-cloak>
+<div>
+  <div ng-controller="YourControll" ng-cloak>
     <section class="content-header">
       <h1>
-        监控管理
+        Title Here
       </h1>
-      <!-- <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Simple</li>
-      </ol> -->
     </section>
-  
+
       <!-- Main content -->
     <section class="content">
-      
+      <p> Content Here</p>
     </section>
 
   </div>
@@ -25,14 +20,11 @@
 {% endblock %}
 
 {% block script %}
+<!-- include the angular controller script js -->
 <!-- <script src="echarts/dist/echarts.min.js"></script> -->
 {% endblock %}
 {% block js %}
 <script>
-  var app = angular.module('app',[]);
-  app.controller('MainControll', [ '$scope', '$http', function($scope, $http){
-
-  }]);
-  
+  // init the angualr module
 </script>
 {% endblock %}
