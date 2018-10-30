@@ -12,6 +12,7 @@ Stacks:
 - UI Lib: `AdminLte`.
 - FE Framework: `Angularjs1.x` & `jQuery` & `fpmc-ng1`.
 
+Prototype: [modao.cc](https://free.modao.cc/app/QVQaMYO4sdMe67xc9rJHRJDhZYLDEE5#screen=s9DF93ED1561530608388924)
 
 ## FAQ
 
