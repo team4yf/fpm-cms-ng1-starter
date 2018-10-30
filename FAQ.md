@@ -33,7 +33,7 @@
           "username": "admin",
           "password": "123123123"
       }
-  }
+    }
     ```
 
   - 运行
