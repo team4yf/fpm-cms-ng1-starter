@@ -9,6 +9,7 @@
     "proxy": "ngrok http 9008",
     "bot": "node fake/bot.js",
     "docker": "docker-compose -f docker-compose.dev.yml up --build -d",
+    "docker:restart": "docker-compose -f docker-compose.dev.yml down && npm run docker",
     "build": "gulp"
   },
   "devDependencies": {

@@ -6,34 +6,32 @@ menus:
     icon: 'dashboard'
     path: '/dashboard'
     page: 'pages/dashboard.html'
-  
-  - type: '-'
-    title: '灯具管理'
-
-  - title: '设备管理'
-    icon: 'lightbulb-o'
-    path: '/device'
-    page: 'pages/device.html'
-
-  - title: '灯具控制'
-    icon: 'toggle-off'
-    path: '/control'
-    page: 'pages/control.html'
-
-  - title: '场景策略'
-    icon: 'hourglass-2'
-    path: '/scene'
-    page: 'pages/scene.html'
 
   - type: '-'
-    title: '监控管理'
+    title: '内容管理'
 
-  - title: '监控视频'
-    icon: 'video-camera'
-    path: '/camera/screen'
-    page: 'pages/camera-screen.html'
+  - title: '文章'
+    icon: 'edit'
+    path: '/posts'
+    page: 'pages/posts.html'
 
-  - title: '点位管理'
-    icon: 'list-ul'
-    path: '/camera'
-    page: 'pages/camera.html'  
+  - title: '标签'
+    icon: 'tags'
+    path: '/tags'
+    page: 'pages/tags.html'
+
+  - type: '-'
+    title: '用户'
+
+  - title: '用户列表'
+    icon: 'users'
+    path: '/users'
+    page: 'pages/users.html'
+
+  - type: '-'
+    title: '系统'
+
+  - title: '基础设置'
+    icon: 'cogs'
+    path: '/setting'
+    page: 'pages/setting.html'

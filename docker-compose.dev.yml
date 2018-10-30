@@ -8,6 +8,7 @@ services:
       - "db"
     networks: 
       - dev-network
+    restart: always
   db:
     image: "mysql:5.6"
     volumes:
@@ -19,6 +20,7 @@ services:
       - "3306:3306"
     networks: 
       - dev-network
+    restart: always
 
 networks:
   dev-network: 
