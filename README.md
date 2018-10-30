@@ -13,7 +13,9 @@ Stacks:
 - FE Framework: `Angularjs1.x` & `jQuery` & `fpmc-ng1`.
 
 
-FAQ [FAQ.md](./FAQ.md)
+## FAQ 
+
+See more FAQ in [FAQ.md](./FAQ.md)。
 
 ## Source Directory
 

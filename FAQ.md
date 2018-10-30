@@ -109,7 +109,7 @@
     page: 'pages/setting.html'
   ```
 
-  其中对应的 `page` 就是页面代码的路径。
+  其中对应的 `page` 就是页面代码的路径。
 
   ![pages](./snaps/faq-pages.png)
 
@@ -117,7 +117,7 @@
 
 - 4) 如何实现前后端数据的交互?
 
-  本系统是一个伪前后端分离的框架，为的是让更多从 jQuery 转向 SPA 的前端开发者能更快的做出产品。
+  本系统是一个伪前后端分离的框架，为的是让更多从jQuery转向 SPA 的前端开发者能更快的做出产品。
   `fpmc-ng1` 是一个SDK，是负责前后端数据交互的；如下是一个示例：
   
   该 `示例1` 从数据库中的`usr_userinfo`数据表中取出 第一页的10条数据，且包含`id,nickname,username,email,mobile,gender,lastLoginIp` 这些字段，并计算满足条件的数据总数。
@@ -265,7 +265,7 @@
   angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
   .controller('PostCtrl', ['$scope', '$ngFpmcService',
     function ($scope, $ngFpmcService) {
-      // $ngFpmcService 提供了 Query, Func, Object 等
+      //$ngFpmcService 提供了 Query, Func, Object 等
       const { Func, Query } = $ngFpmcService;
       new Func('foo.bar')
         .invoke({ name: 'ox'})
