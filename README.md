@@ -13,9 +13,21 @@ Stacks:
 - FE Framework: `Angularjs1.x` & `jQuery` & `fpmc-ng1`.
 
 
-## FAQ 
+## FAQ
 
-See more FAQ in [FAQ.md](./FAQ.md)。
+1) How to use angularjs1.x ?
+
+  See the Manual [http://www.angularjs.net.cn/](http://www.angularjs.net.cn/).
+
+2) How to use nodejs ?
+
+  See the homepage of the [nodejs](https://nodejs.org/en/docs/)
+
+3) How to use mysql ?
+
+  Emmmmm ~~.
+
+4) See more FAQ in [FAQ.md](./FAQ.md)。
 
 ## Source Directory
 
