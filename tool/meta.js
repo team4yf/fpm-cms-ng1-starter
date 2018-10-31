@@ -15,9 +15,33 @@ const generate_one = meta => {
   const { name, comment = '-', fields } = meta;
   const field_compiled = _.template('\`${ name }\` ${ type } ${ nn } NULL ${ dft } COMMENT \'${ comment }\', ');
   const FIELDS = _.reduce( fields, ( r, i ) => {
-    const f = Object.assign({ nn: '', dft: '', comment: '-'}, i)
+    const f = Object.assign({ nn: true, type: 'string', dft: '', comment: '-'}, i)
     if(!_.isEmpty(f.dft)){
       f.dft = 'DEFAULT ' + (_.isString(f.dft)? `'${f.dft}'` : f.dft)
+    }
+    f.nn = f.nn ? '' : 'NOT';
+    switch(f.type){
+      case 'string':
+        f.type = 'varchar(200)';
+        break;
+      case 'text':
+        f.type = 'varchar(1000)';
+        break;
+      case 'longText':
+        f.type = 'text';
+        break;
+      case 'int':
+        f.type = 'int';
+        break;
+      case 'bool':
+        f.type = 'tinyint(1)';
+        break;
+      case 'bigint':
+        f.type = 'bigint';
+        break;
+      case 'timestamp':
+        f.type = 'bigint';
+        break;
     }
     return r + '  ' + field_compiled(f) + '\n'
   }, '');

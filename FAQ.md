@@ -283,3 +283,44 @@
     }
     ```
 
+- 5) 如何使用 `sql generator`?
+
+  `sql generator` 是一个用于快速生成建表语句的工具，通过`meta.json`文件生成sql语句。
+
+  - 创建 meta.json
+
+    在 `tool/meta/` 目录下创建一个 meta 文件，文件名为表名，如`foo.json`；
+    ```javascript
+    {
+      "name": "foo",          // 表名
+      "comment": "foo comment", // 表备注
+      "fields": [
+        {
+          "name": "f_key",  // 字段定义
+          "type": "string"  // name 和 type 是必须定义的。
+        },
+        {
+          "name": "f_val",
+          "dft": "aaa",     // 字段缺省值
+          "nn": false,      // 字段不可为空
+          "type": "string"  // 字段类型, 可选： string/text/longText/int/bool/bigint/timestamp
+        }
+      ]
+    }
+    ```
+
+    可生成如下 sql 语句：
+    ```sql
+    DROP TABLE IF EXISTS `foo`;
+    CREATE TABLE IF NOT EXISTS `foo` (
+      `id` bigint(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
+      `delflag` tinyint(4) NOT NULL DEFAULT '0' COMMENT '删除标示',
+      `createAt` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据创建时间戳',
+      `updateAt` bigint(20) NOT NULL DEFAULT '0' COMMENT '数据更新时间戳',
+      `f_key` varchar(200)  NULL  COMMENT '-',
+      `f_val` varchar(200) NOT NULL DEFAULT 'aaa' COMMENT '-',
+      PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='foo comment';
+    ```
+
+    可在 [phpmyadmin](http://localhost:88) 中执行该 sql 完成建表。
