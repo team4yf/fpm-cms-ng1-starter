@@ -9,3 +9,16 @@ angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
           .then(console.log)
           .catch(console.error)
     }])
+  .controller('PostCreateCtrl', ['$scope', '$ngFpmcService',
+    function ($scope, $ngFpmcService) {
+        const { Func, Query } = $ngFpmcService;
+        $scope.post = {
+          content: '',
+          title: '',
+        }
+
+        $scope.save = function(){
+          console.log($scope.post);
+        }
+    }])
+  

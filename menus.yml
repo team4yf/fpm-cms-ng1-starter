@@ -28,6 +28,10 @@ menus:
     path: '/cms/posts'
     page: 'pages/cms/posts.html'
 
+  - invisible: true
+    path: '/cms/posts/create'
+    page: 'pages/cms/post-create.html'
+
   - title: '标签'
     icon: 'tags'
     path: '/cms/tags'

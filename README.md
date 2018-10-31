@@ -28,7 +28,11 @@ Prototype: [modao.cc](https://free.modao.cc/app/QVQaMYO4sdMe67xc9rJHRJDhZYLDEE5#
 
   Emmmmm ~~.
 
-4) See more FAQ in [FAQ.md](./FAQ.md)。
+4) How can we make `{{}}` working with angularjs not `nunjucks` ?
+
+  > If you want to output any of the special Nunjucks tags like {{, you can use a {{, you can use a {% raw %} block and anything inside of it will be output as plain text.
+
+5) See more FAQ in [FAQ.md](./FAQ.md)。
 
 ## Source Directory
 
