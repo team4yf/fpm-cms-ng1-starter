@@ -78,3 +78,8 @@ $ cp config.default.json config.json
 ```
 $ npm run docker && npm run dev
 ```
+
+## Backup DB
+```
+$ npm run backup
+```

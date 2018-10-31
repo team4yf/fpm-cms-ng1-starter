@@ -8,3 +8,4 @@ config.json
 /logs
 ngrok
 public/lib
+backup/*.sql

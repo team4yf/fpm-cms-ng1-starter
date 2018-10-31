@@ -14,7 +14,6 @@
         <li class="active">Simple</li>
       </ol> -->
     </section>
-  
       <!-- Main content -->
     <section class="content">
       <div class="row">
@@ -92,29 +91,11 @@
 {% endblock %}
 
 {% block script %}
-<script src="/js/controller/device.js"></script>
+<script src="/js/controller/post.js"></script>
 {% endblock %}
 {% block js %}
 <script>
 "use strict";
-angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
-  .controller('PostCtrl', ['$scope', '$ngFpmcService',
-    function ($scope, $ngFpmcService) {
-      // $ngFpmcService 提供了 Query, Func, Object 等
-      const { Func, Query } = $ngFpmcService;
-      new Query('usr_userinfo')
-        .select('id,nickname,username,email,mobile,gender,lastLoginIp')
-        .page(1,10)
-        .findAndCount()
-        .then(console.log)
-        .catch(console.error);
-
-      new Func('foo.bar')
-        .invoke({ name: 'ox'})
-        .then(console.log)
-        .catch(console.error);
-
-    }])
 angular.module('app', ['fpm.c.post'])
 </script>
 {% endblock %}

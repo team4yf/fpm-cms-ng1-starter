@@ -21,7 +21,13 @@ exports.CreateMenus = (fpm) => {
       // it's outlink
     }else{
       router.get(path, async ctx => {
-        await ctx.render(page);
+        try{
+          await ctx.render(page);
+        }catch(e){
+          // console.error(e.toString());
+          const showError = fpm.get('debug') === true ? {error: e.toString()} : {};
+          await ctx.render('pages/404.html', showError);
+        }
       });
     }
   })
