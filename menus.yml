@@ -51,4 +51,4 @@ menus:
   - title: '基础设置'
     icon: 'cogs'
     path: '/setting'
-    page: 'pages/setting.html'
+    page: 'pages/cms/setting.html'
