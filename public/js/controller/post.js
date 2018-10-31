@@ -12,13 +12,16 @@ angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
   .controller('PostCreateCtrl', ['$scope', '$ngFpmcService',
     function ($scope, $ngFpmcService) {
         const { Func, Query } = $ngFpmcService;
+        const $contentDom = $('.textarea');
         $scope.post = {
-          content: '',
+          content: '<p>AAABC</p>',
           title: '',
-        }
+        };
+
+        $contentDom.html($scope.post.content);
 
         $scope.save = function(){
+          $scope.post.content = contentDom.val();
           console.log($scope.post);
         }
     }])
-  

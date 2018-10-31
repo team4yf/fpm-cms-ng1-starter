@@ -4,13 +4,13 @@
   "fields": [
     {
       "name": "f_key",
-      "type": "varchar(200)"
+      "type": "string"
     },
     {
       "name": "f_val",
       "dft": "aaa",
-      "nn": "NOT",
-      "type": "varchar(200)"
+      "nn": false,
+      "type": "string"
     }
   ]
 }

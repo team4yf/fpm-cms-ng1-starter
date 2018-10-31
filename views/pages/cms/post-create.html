@@ -12,7 +12,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="/dashboard"><i class="fa fa-dashboard"></i> 主页</a></li>
-        <li><a href="./">文章列表</a></li>
+        <li><a href="/cms/posts">文章列表</a></li>
         <li class="active">新建文章</li>
       </ol>
     </section>
@@ -117,16 +117,16 @@
                   <label for="" class="col-sm-2 control-label">内容</label>
 
                   <div class="col-sm-10">
-                    <textarea ng-model="post.content" class="textarea" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
-
+                    <textarea class="textarea" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                      {{ post.content }}
                     </textarea>
                   </div>
                 </div>
 
                 <!-- /.box-body -->
                 <div class="box-footer">
-                  <button type="button" ng-click="save()" class="btn col-off-2 btn-info ">保存</button>
-                  <button type="reset" class="btn btn-default pull-right">取消</button>
+                  <button type="button" ng-click="save()" class="btn col-md-offset-2 btn-info ">保存</button>
+                  <button type="reset" class="btn btn-default">取消</button>
                 </div>
                 <!-- /.box-footer -->
               </form>
@@ -175,18 +175,7 @@
 {% block js %}
 <script>
 "use strict";
-var editor = $('.textarea').wysihtml5({
-  set: function(){
-    console.log(arguments);
-    }
-});
-console.log(editor.Editor)
-$('.textarea').on('change', function(){
-  alert(1)
-})
-// editor.on('change', function(){
-//   console.log(arguments);
-// })
+var editor = $('.textarea').wysihtml5();
 angular.module('app', ['fpm.c.post'])
 </script>
 {% endblock %}
