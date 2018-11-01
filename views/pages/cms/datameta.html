@@ -1,0 +1,217 @@
+{% extends "views/templates/void-main.html" %}
+{% block title %} 数据列表 {% endblock %}
+{% block collapse %} sidebar-collapse {% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/css/datameta.css">
+{% endblock %}
+
+{% block contentid %}datameta{% endblock %}
+{% block content %}
+{% raw %}
+<!-- html内容 -->
+<div id="datameta" ng-controller="DatametaCtrl">
+  <div class="table_box">
+    <div>搜索框输入值：{{searchValue}}</div>
+    <div class="row">
+      <div class="col-sm-offset-9 col-sm-3">
+          <div class="input-group">
+            <input 
+              type="text" class="form-control" 
+              placeholder="请输入姓名或者手机号"
+              ng-model="searchValue"
+            >
+            <span class="input-group-btn">
+              <button 
+                class="btn btn-default" 
+                type="button"
+                ng-click="search()"
+              >
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+      </div>
+    </div>
+    <table class="table">
+      <caption>数据列表</caption>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>姓名</th>
+          <th>手机号</th>
+          <th>密码</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-show="rows == ''"><td colspan="4" style="text-align: center;height: 100px;line-height: 100px">没有搜索到相关信息</td></tr>
+        <tr ng-repeat="x in rows">
+          <td>
+            {{x._d.id}}
+          </td>
+          <td>
+            {{x._d.nickname}}
+          </td>
+          <td>
+              {{x._d.mobile}}
+          </td>
+          <td>
+              {{x._d.password}}
+          </td>
+          <td>
+            <button 
+              class="btn btn-primary btn-sm" 
+              data-toggle="modal" 
+              data-target="#myModal" 
+              ng-click="edit(x._d)"
+              data-toggle="modal" 
+              data-target="#myModal"
+              >
+              编辑
+            </button>
+            <button class="btn btn-danger btn-sm"  ng-click="delete()">删除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav>
+      <div class="btn-group">
+        <button 
+          type="button" 
+          class="btn btn-default"
+          ng-click="prePage()"
+          ng-disabled="page == 1"
+        >
+          上一页
+        </button>
+        <button 
+          type="button" 
+          class="btn btn-default" 
+          ng-click="nextPage()"
+          ng-disabled="page == pages"
+        >
+          下一页
+        </button>
+      </div>
+      <span>{{page}}/{{pages}}</span>
+    </nav>
+  </div>
+
+
+  <!-- 编辑弹出框 -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">编辑</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" name="editForm">
+            <div class="form-group">
+              <label for="input_nickname" class="col-sm-2 control-label">昵称：</label>
+              <div
+                class="col-sm-10"
+                ng-class="{ 
+                  'has-error' : editForm.nickname.$invalid && editForm.nickname.$dirty,
+                  'has-success' : editForm.nickname.$valid && editForm.nickname.$dirty
+                }"
+              >
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="input_nickname" 
+                  name="nickname"
+                  placeholder="请输入昵称" 
+                  ng-model="user.nickname"
+                  required
+                  maxlength="20"
+                  aria-describedby="inputSuccess2Status"
+                  ng-value="modal.nickname"
+                >
+                <div>{{user.nickname}}</div>
+                <p class="error_tip" ng-if="editForm.nickname.$invalid && editForm.nickname.$dirty">
+                    昵称不能为空
+                </p>
+              </div>
+            </div>
+      
+            <div class="form-group">
+              <label for="input_password" class="col-sm-2 control-label">密码：</label>
+              <div 
+                class="col-sm-10"
+                ng-class="{ 
+                  'has-error' : editForm.password.$invalid && editForm.password.$dirty,
+                  'has-success' : editForm.password.$valid && editForm.password.$dirty
+                }"
+              >
+                <input
+                  type="text"
+                  class="form-control" 
+                  id="input_password" 
+                  name="password" 
+                  placeholder="请输入密码(6-20个字符)" 
+                  ng-model="user.password"
+                  required
+                  ng-minlength="6"
+                  ng-maxlength="20"
+                  ng-value="modal.password"
+                >
+                  <div class="error_tip" ng-if="editForm.password.$invalid && editForm.password.$dirty">
+                    长度为6-20个字符
+                  </div>
+                <div>{{user.password}}</div>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="input_mobile" class="col-sm-2 control-label">手机：</label>
+              <div
+                class="col-sm-10"
+                ng-class="{ 
+                  'has-error' : editForm.mobile.$invalid && editForm.mobile.$dirty,
+                  'has-success' : editForm.mobile.$valid && editForm.mobile.$dirty
+                }"
+              >
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="input_mobile" 
+                  name="mobile"
+                  placeholder="请输入手机号" 
+                  ng-model="user.mobile"
+                  required
+                  pattern="^1[345789]\d{9}$"
+                  ng-value="modal.mobile"
+                >
+                  <div class="error_tip" ng-if="editForm.mobile.$invalid && editForm.mobile.$dirty">
+                    请输入正确的手机号
+                  </div>
+                <div>{{user.mobile}}</div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" ng-click="save()">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endraw %}
+
+
+{% endblock %}
+{% block script %}
+
+<!-- 引入js -->
+<script src="/js/controller/datameta.js"></script>
+{% endblock %}
+{% block js %}
+<script>
+"use strict";
+angular.module('app', ['fpm.c.datameta' ])
+</script>
+{% endblock %}
