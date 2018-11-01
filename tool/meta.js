@@ -1,6 +1,8 @@
 const _ = require('lodash');
 const fs = require('fs');
 const path = require('path');
+const Promise = require('bluebird');
+const { transation } = require('./executer.js');
 
 const table_metas = _.map(_.remove(process.argv, arg => {
                               return arg.endsWith('.json')
@@ -60,9 +62,31 @@ ${ FIELDS }  PRIMARY KEY (\`id\`)
 const sqls = _.map(table_metas, meta => {
   return generate_one(meta);
 })
-_.map(sqls, sql => console.log(sql));
 
-// fs.writeFile(`${ TABLE_NAME }.sql`, SQL_TEMPLATE, (err) => {
-//   if (err) throw err;
-//   console.log('The file has been saved!');
-// });
+const doSql = _sqls =>{
+  transation().then( atom => {
+    const command = Promise.promisify(atom.command);
+    const commands = [];
+    _.map(_sqls, sql => {
+      sql = sql.replace(/\n/g, '');
+      sql = sql.split(';');
+      _.remove(sql, (n) => { return _.trim(n) == ''})
+      _.map(sql, s => {
+        commands.push(command( { sql: s }));
+      })
+    })
+    Promise.all(commands)
+      .then( results => {
+        // console.log(results);
+        atom.commit(() => {
+          console.log('ok');
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        atom.rollback();
+      })
+  })
+}
+
+doSql(sqls);
