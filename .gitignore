@@ -9,3 +9,4 @@ config.json
 ngrok
 public/lib
 backup/*.sql
+uploads/

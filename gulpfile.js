@@ -74,7 +74,9 @@ gulp.task('copy-vender',function(){
     gulp.src([
         './node_modules/echarts/dist/*/*', './node_modules/echarts/dist/*.min.*'])
         .pipe(gulp.dest('./public/lib/echarts'));
-
+    gulp.src([
+        './node_modules/sweetalert2/dist/*'])
+        .pipe(gulp.dest('./public/lib/sweetalert2'));
     gulp.src([
         './node_modules/admin-lte/bower_components/font-awesome/*/*'])
         .pipe(gulp.dest('./public/lib/font-awesome'));

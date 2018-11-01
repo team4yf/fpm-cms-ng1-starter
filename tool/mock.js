@@ -1,6 +1,8 @@
 const _ = require('lodash');
 const fs = require('fs');
 const path = require('path');
+const Promise = require('bluebird');
+const { transation } = require('./executer.js');
 
 const tables = _.remove(process.argv, arg => {
   return arg.endsWith('.json')
@@ -32,4 +34,24 @@ ${ values_str }
 })
 _.map(sqls, sql => console.log(sql));
 
+const doSql = _sqls =>{
+  transation().then( atom => {
+    const command = Promise.promisify(atom.command);
+    const commands = _.map(_sqls, sql => {
+      return command( { sql });
+    })
+    Promise.all(commands)
+      .then( results => {
+        // console.log(results);
+        atom.commit(() => {
+          console.log('ok');
+        });
+      })
+      .catch(err => {
+        console.error(err);
+        atom.rollback();
+      })
+  })
+}
 
+doSql(sqls);

@@ -17,11 +17,11 @@ exports.frontendBuilder = fpm => {
         extension: 'html',
         map: { html: 'nunjucks' },
     }))
-    
+
     app.use(Static(path.join(LOCAL, 'public')));
-    
+
     app.use(Session({ key: 'fpm-iot-admin' }, app));
-    
+
     app.use(session);
 
     fpm.bindRouter(CreateMenus(fpm));

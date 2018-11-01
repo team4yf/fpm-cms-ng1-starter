@@ -1,0 +1,10 @@
+{
+  "name": "cms_tags",
+  "comment": "内容标签分类",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string"
+    }
+  ]
+}
