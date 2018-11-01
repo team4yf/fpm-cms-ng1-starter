@@ -1,0 +1,10 @@
+{
+  "name": "cms_category",
+  "comment": "内容类目",
+  "fields": [
+    {
+      "name": "name",
+      "type": "string"
+    }
+  ]
+}
