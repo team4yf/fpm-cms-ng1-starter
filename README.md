@@ -83,6 +83,14 @@ $ cp config.default.json config.json
 $ npm run docker && npm run dev
 ```
 
+## Run Demo
+
+```
+$ npm run demo
+```
+
+then open [http://localhost:8088](http://localhost:8088)
+
 ## Backup DB
 ```
 $ npm run backup

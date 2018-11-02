@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "./node_modules/.bin/nodemon source/app.js",
     "test": "./node_modules/.bin/mocha test/*.test.js",
-    "proxy": "ngrok http 9008",
+    "demo": "./node_modules/.bin/http-server ./node_modules/admin-lte/ -d False -s --cors -c-1 -p 8088",
+    "proxy": "ngrok http 9007",
     "bot": "node fake/bot.js",
     "backup": "python backup.py",
     "docker": "docker-compose -f docker-compose.dev.yml up --build -d",
