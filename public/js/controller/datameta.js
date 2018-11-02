@@ -37,13 +37,13 @@ angular.module('fpm.c.datameta', ['fpm.service', 'fpm.filter'])
 
       $scope.search();
 
-      // 上一页
-      $scope.prePage = function () {
-        if ($scope.page > 1) {
-          $scope.page -= 1;
-          console.log('当前页数', $scope.page);
 
-          var obj = new Query('cms_setting');
+
+
+      
+      // 加载数据
+      $scope.loading = function(){
+        var obj = new Query('cms_setting');
           console.log($scope.page)
           obj.condition(`mobile like '%${ $scope.searchValue }%' or nickname like '%${ $scope.searchValue }%'`)
             .page($scope.page, 10)
@@ -56,6 +56,17 @@ angular.module('fpm.c.datameta', ['fpm.service', 'fpm.filter'])
             }).catch(function (err) {
               console.error(err);
             });
+      }
+
+
+
+      // 上一页
+      $scope.prePage = function () {
+        if ($scope.page > 1) {
+          $scope.page -= 1;
+          console.log('当前页数', $scope.page);
+          $scope.loading();
+          
         }
       };
 
@@ -65,18 +76,7 @@ angular.module('fpm.c.datameta', ['fpm.service', 'fpm.filter'])
           $scope.page += 1;
           console.log('当前页数', $scope.page);
 
-            var obj = new Query('cms_setting');
-            obj.condition(`mobile like '%${ $scope.searchValue }%' or nickname like '%${ $scope.searchValue }%'`)
-            .page($scope.page, 10)
-            .findAndCount()
-            .then(function (data) {
-              console.log(data);
-              $scope.rows = data.rows;
-              $scope.pages = Math.ceil(data.count / 10)
-              console.log('总页数：', $scope.pages)
-            }).catch(function (err) {
-              console.error(err);
-            });
+          $scope.loading();
         }
       };
 
@@ -94,6 +94,8 @@ angular.module('fpm.c.datameta', ['fpm.service', 'fpm.filter'])
         mobile : ''
       };
 
+
+      // 编辑
       $scope.edit = function (obj) {
         console.log(obj);
         $scope.modal.id = obj.id;
@@ -104,19 +106,21 @@ angular.module('fpm.c.datameta', ['fpm.service', 'fpm.filter'])
       };
 
       
-
+      //编辑保存
       $scope.save = function (){
         console.log($scope.modal);
         if($scope.editForm.$invalid){
           return false;
         }else{
+          let id = $scope.modal.id
           const { Func, Obj } = $ngFpmcService;
-          var obj = new Obj('cms_setting',{$scope:modal.id});
-            obj.save($scope.user)
+          var obj = new Obj('cms_setting',{ id });
+            obj.save($scope.modal)
               .then(function(data){
                 alert('保存成功');
-                location.reload();
+                // location.reload();
                 console.log(data);
+                $scope.loading();
               }).catch(function(err){
                 console.error(err);
               });
@@ -124,5 +128,26 @@ angular.module('fpm.c.datameta', ['fpm.service', 'fpm.filter'])
         }
       }
 
+      //删除按钮
+      $scope.delete = function(obj){
+        console.log(obj);
+        $scope.modal.id = obj.id;
+      }
+
+      // 确定删除
+      $scope.del = function(){
+          var id = $scope.modal.id
+          console.log(id);
+          const { Func, Obj } = $ngFpmcService;
+          var obj = new Obj('cms_setting', {id});
+          obj.remove()
+            .then(function(data){
+              console.log(data);
+              alert('删除成功');
+              $scope.loading();
+            }).catch(function(err){
+              console.error(err);
+            });
+      }
     }
   ])
