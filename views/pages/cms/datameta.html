@@ -64,12 +64,17 @@
               data-toggle="modal" 
               data-target="#myModal" 
               ng-click="edit(x._d)"
-              data-toggle="modal" 
-              data-target="#myModal"
               >
               编辑
             </button>
-            <button class="btn btn-danger btn-sm"  ng-click="delete()">删除</button>
+            <button 
+              class="btn btn-danger btn-sm"  
+              data-toggle="modal" 
+              data-target="#confirm" 
+              ng-click="delete(x._d)"
+            >
+              删除
+            </button>
           </td>
         </tr>
       </tbody>
@@ -123,7 +128,7 @@
                   id="input_nickname" 
                   name="nickname"
                   placeholder="请输入昵称" 
-                  ng-model="user.nickname"
+                  ng-model="modal.nickname"
                   required
                   maxlength="20"
                   aria-describedby="inputSuccess2Status"
@@ -151,7 +156,7 @@
                   id="input_password" 
                   name="password" 
                   placeholder="请输入密码(6-20个字符)" 
-                  ng-model="user.password"
+                  ng-model="modal.password"
                   required
                   ng-minlength="6"
                   ng-maxlength="20"
@@ -179,7 +184,7 @@
                   id="input_mobile" 
                   name="mobile"
                   placeholder="请输入手机号" 
-                  ng-model="user.mobile"
+                  ng-model="modal.mobile"
                   required
                   pattern="^1[345789]\d{9}$"
                   ng-value="modal.mobile"
@@ -193,7 +198,34 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" ng-click="save()">确定</button>
+          <button type="button" 
+            class="btn btn-primary" 
+            ng-disabled="editForm.$invalid" 
+            data-dismiss="modal"
+            ng-click="save()" 
+          >
+            确定
+          </button>
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 删除弹出框 -->
+  <div class="modal fade" id="confirm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">警告</h4>
+        </div>
+        <div class="modal-body">
+          确定删除吗？
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="del()">确定</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         </div>
       </div>
