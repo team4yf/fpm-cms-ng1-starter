@@ -4,11 +4,11 @@
 <link rel="stylesheet" href="/lib/admin-lte/plugins/iCheck/square/blue.css">
 <style>
 html{
-  background-image: url(http://slighting.shuncom.com.cn/CloudPlatform/imgs/login/login-bg.jpg);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-image: url({{ setting.login.image | d('http://slighting.shuncom.com.cn/CloudPlatform/imgs/login/login-bg.jpg') }});
 }
 .login-page, .register-page{
   background: transparent;
@@ -23,12 +23,11 @@ html{
 {% block body %}
 <div class="login-box">
     <div class="login-logo">
-      <a href=""><b>FPM CMS</b> beta</a>
+      <a href=""><b>{{ setting.login.welcome | d('FPM CMS beta') }}</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
       <p class="login-box-msg">输入用户信息</p>
-  
       <form action="/login" method="post">
         <div class="form-group has-feedback">
           <input type="text" class="form-control" placeholder="用户名" value="admin" />

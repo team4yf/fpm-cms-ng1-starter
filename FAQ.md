@@ -324,3 +324,26 @@
     ```
 
     可在 [phpmyadmin](http://localhost:88) 中执行该 sql 完成建表。
+
+- 6) 如何在前端访问URL中的参数？
+
+  通常我们第一时间会想到，通过正则表达式来截取URL中的参数，这样当然是可行的。
+
+  本系统还提供了一个更简洁的办法来访问URL中的参数；`APP.query`， 如：
+  ```javascript
+  // http://localhost:9007/cms/post/create?data=1
+  console.log(APP.query);
+  // output:
+  {
+    data: "1"
+  }
+
+  // http://localhost:9007/cms/post/detail/1
+  console.log(APP.params);
+  // output:
+  {
+    id: "1"
+  }
+  ```
+
+  *WARNNING* 需要注意的是，`params` 中的参数名是在 `koa-router` 中定义的 URL 中的参数名，比如上方的代码清单中的 `id` 是因为 router中的定义 `/cms/post/detail/:id` 。

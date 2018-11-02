@@ -74,7 +74,6 @@ angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
           //     timer: 1500
           //   })
           // });
-
           // Swal({
           //   position: 'center',
           //   type: 'success',
