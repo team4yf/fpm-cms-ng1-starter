@@ -32,7 +32,7 @@ Prototype: [modao.cc](https://free.modao.cc/app/QVQaMYO4sdMe67xc9rJHRJDhZYLDEE5#
 
   > If you want to output any of the special Nunjucks tags like {{, you can use a {{, you can use a {% raw %} block and anything inside of it will be output as plain text.
 
-5) See more FAQ in [FAQ.md](./FAQ.md)。
+5) See more FAQ in [FAQ.md](./FAQ.md)。
 
 ## Source Directory
 
@@ -92,6 +92,9 @@ $ npm run demo
 then open [http://localhost:8088](http://localhost:8088)
 
 ## Backup DB
+
+*WARNNING* require `python` before run this command.
+
 ```
 $ npm run backup
 ```
