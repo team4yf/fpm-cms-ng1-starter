@@ -1,5 +1,5 @@
 "use strict";
-angular.module('fpm.c.datameta', ['fpm.service', 'fpm.filter'])
+angular.module('fpm.c.datameta_edit', ['fpm.service', 'fpm.filter'])
   .controller('DatametaCtrl', ['$scope', '$ngFpmcService',
     function ($scope, $ngFpmcService) {
       // $scope.user = {

@@ -53,6 +53,10 @@ menus:
     path: '/cms/datameta'
     page: 'pages/cms/datameta.html'
 
+  - invisible: true
+    path: '/cms/datameta/edit'
+    page: 'pages/cms/datameta_edit.html'
+
   - type: '-'
     title: '系统'
 
