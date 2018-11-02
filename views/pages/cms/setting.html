@@ -14,76 +14,81 @@
     <form class="form-horizontal" name="settingForm">
 
       <div class="form-group">
-        <label for="input_nikename" class="col-sm-2 control-label">昵称：</label>
+        <label for="input_nickname" class="col-sm-2 control-label">昵称：</label>
         <div
           class="col-sm-10"
           ng-class="{ 
-            'has-error' : settingForm.nikename.$invalid && settingForm.nikename.$touched,
-            'has-success' : settingForm.nikename.$valid && settingForm.nikename.$touched
+            'has-error' : settingForm.nickname.$invalid && settingForm.nickname.$dirty,
+            'has-success' : settingForm.nickname.$valid && settingForm.nickname.$dirty
           }"
         >
           <input 
             type="text" 
             class="form-control" 
-            id="input_nikename" 
-            name="nikename"
-            placeholder="请再次输入密码" 
-            ng-model="user.nikename"
+            id="input_nickname" 
+            name="nickname"
+            placeholder="请输入昵称" 
+            ng-model="user.nickname"
             required
             maxlength="20"
+            aria-describedby="inputSuccess2Status"
           >
-          <div>{{user.nikename}}</div>
-          <p class="error_tip" ng-if="settingForm.nikename.$invalid && settingForm.nikename.$touched">
+          <div>{{user.nickname}}</div>
+          <p class="error_tip" ng-if="settingForm.nickname.$invalid && settingForm.nickname.$dirty">
               昵称不能为空
           </p>
         </div>
       </div>
 
-      <div class="form-group ">
-        <label for="input_login_id" class="col-sm-2 control-label">账号：</label>
+      <div class="form-group">
+        <label for="input_password" class="col-sm-2 control-label">密码：</label>
         <div 
-          class="col-sm-10" 
+          class="col-sm-10"
           ng-class="{ 
-            'has-error' : settingForm.login_id.$invalid && settingForm.login_id.$touched,
-            'has-success' : settingForm.login_id.$valid && settingForm.login_id.$touched
-          }">
-          <input 
+            'has-error' : settingForm.password.$invalid && settingForm.password.$dirty,
+            'has-success' : settingForm.password.$valid && settingForm.password.$dirty
+          }"
+        >
+          <input
+            type="password"
             class="form-control" 
-            id="input_login_id" 
-            name="login_id" 
-            type="text" 
-            placeholder="请输入域名(6-20个字符)" 
-            ng-model="user.login_id"
+            id="input_password" 
+            name="password" 
+            placeholder="请输入密码(6-20个字符)" 
+            ng-model="user.password"
             required
             ng-minlength="6"
-            ng-maxlength="30"
+            ng-maxlength="20"
           >
-          <div class="error_tip" ng-if="settingForm.login_id.$invalid && settingForm.login_id.$dirty">
-            长度为6-30个字符
-          </div>
-          <div>{{user.login_id}}</div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="input_login_pass" class="col-sm-2 control-label">密码：</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="input_login_pass" placeholder="请输入密码" ng-model="user.login_pass">
-          <div>{{user.login_pass}}</div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="input_login_pass" class="col-sm-2 control-label">确认密码：</label>
-        <div class="col-sm-10">
-          <input type="password" class="form-control" id="input_login_pass" placeholder="请再次输入密码" ng-model="user.login_pass">
-          <div>{{user.login_pass}}</div>
+            <div class="error_tip" ng-if="settingForm.password.$invalid && settingForm.password.$dirty">
+              长度为6-20个字符
+            </div>
+          <div>{{user.password}}</div>
         </div>
       </div>
       
       <div class="form-group">
         <label for="input_mobile" class="col-sm-2 control-label">手机：</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="input_mobile" placeholder="请再次输入密码" ng-model="user.mobile">
+        <div
+          class="col-sm-10"
+          ng-class="{ 
+            'has-error' : settingForm.mobile.$invalid && settingForm.mobile.$dirty,
+            'has-success' : settingForm.mobile.$valid && settingForm.mobile.$dirty
+          }"
+        >
+          <input 
+            type="text" 
+            class="form-control" 
+            id="input_mobile" 
+            name="mobile"
+            placeholder="请输入手机号" 
+            ng-model="user.mobile"
+            required
+            pattern="^1[345789]\d{9}$"
+          >
+            <div class="error_tip" ng-if="settingForm.mobile.$invalid && settingForm.mobile.$dirty">
+              请输入正确的手机号
+            </div>
           <div>{{user.mobile}}</div>
         </div>
       </div>
@@ -93,10 +98,10 @@
           <button 
             type="submit"
             class="btn btn-primary"
-            ng-disabled="" 
+            ng-disabled="settingForm.$invalid" 
             ng-click="save()"
           >
-            保存
+            注册
           </button>
         </div>
       </div>

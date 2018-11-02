@@ -46,9 +46,17 @@ menus:
     page: 'pages/cms/users.html'
 
   - type: '-'
+    title: '列表'
+
+  - title: '数据列表'
+    icon: 'users'
+    path: '/cms/datameta'
+    page: 'pages/cms/datameta.html'
+
+  - type: '-'
     title: '系统'
 
   - title: '基础设置'
     icon: 'cogs'
-    path: '/setting'
+    path: '/cms/setting'
     page: 'pages/cms/setting.html'
