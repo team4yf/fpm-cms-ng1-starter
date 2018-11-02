@@ -1,10 +1,11 @@
+<!-- {% extends "views/templates/void-main.html" %} -->
 {% extends "views/templates/void-main-with-footer.html" %}
-{% block title %} 数据列表 {% endblock %}
+{% block title %} 数据列表--编辑 {% endblock %}
 {% block head %}
-<link rel="stylesheet" href="/css/datameta.css">
+<link rel="stylesheet" href="/css/datameta_edit.css">
 {% endblock %}
 
-{% block contentid %}datameta{% endblock %}
+{% block contentid %}datameta-edit{% endblock %}
 {% block content %}
 {% raw %}
 <!-- html内容 -->
@@ -44,7 +45,7 @@
                 {{x._d.data}}
               </td>
               <td>
-                <a href="/cms/datameta/edit">{{x._d.manage}}</a>
+                <a href="#">{{x._d.manage}}</a>
               </td>
               <td>
                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" ng-click="edit(x._d)">
@@ -168,11 +169,11 @@
 {% block script %}
 
 <!-- 引入js -->
-<script src="/js/controller/datameta.js"></script>
+<script src="/js/controller/datameta_edit.js"></script>
 {% endblock %}
 {% block js %}
 <script>
   "use strict";
-  angular.module('app', ['fpm.c.datameta'])
+  angular.module('app', ['fpm.c.datameta_edit'])
 </script>
 {% endblock %}

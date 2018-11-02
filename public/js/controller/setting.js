@@ -4,9 +4,11 @@ angular.module('fpm.c.setting', ['fpm.service', 'fpm.filter'])
     function ($scope, $ngFpmcService) {
         // console.log('aaa', $ngFpmcService);
         $scope.user = {
-          nickname : '',
-          password : '',
-          mobile : ''
+          domain : '',
+          langulage : '',
+          sitecode : '',
+          email : '',
+          phone : ''
         };
         $scope.save = function () {
           if($scope.settingForm.$invalid){
