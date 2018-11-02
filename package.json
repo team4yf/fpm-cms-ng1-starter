@@ -44,6 +44,6 @@
     "yamljs": "^0.3.0",
     "yf-fpm-dbm": "^2.0.7",
     "yf-fpm-server": "^2.4.12",
-    "yfpmc-ng1": "^1.0.3"
+    "yfpmc-ng1": "^1.0.4"
   }
 }
