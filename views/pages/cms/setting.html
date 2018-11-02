@@ -1,6 +1,5 @@
 {% extends "views/templates/void-main.html" %}
 {% block title %} 基础设置 {% endblock %}
-{% block collapse %} sidebar-collapse {% endblock %}
 {% block head %}
 <link rel="stylesheet" href="/css/setting.css">
 {% endblock %}
@@ -11,101 +10,124 @@
 <!-- html内容 -->
 <div id="setting" ng-controller="SettingCtrl">
   <div class="form_box">
-    <form class="form-horizontal" name="settingForm">
-
-      <div class="form-group">
-        <label for="input_nickname" class="col-sm-2 control-label">昵称：</label>
-        <div
-          class="col-sm-10"
-          ng-class="{ 
-            'has-error' : settingForm.nickname.$invalid && settingForm.nickname.$dirty,
-            'has-success' : settingForm.nickname.$valid && settingForm.nickname.$dirty
-          }"
-        >
-          <input 
-            type="text" 
-            class="form-control" 
-            id="input_nickname" 
-            name="nickname"
-            placeholder="请输入昵称" 
-            ng-model="user.nickname"
-            required
-            maxlength="20"
-            aria-describedby="inputSuccess2Status"
-          >
-          <div>{{user.nickname}}</div>
-          <p class="error_tip" ng-if="settingForm.nickname.$invalid && settingForm.nickname.$dirty">
-              昵称不能为空
-          </p>
-        </div>
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">Setting</h3>
       </div>
-
-      <div class="form-group">
-        <label for="input_password" class="col-sm-2 control-label">密码：</label>
-        <div 
-          class="col-sm-10"
-          ng-class="{ 
-            'has-error' : settingForm.password.$invalid && settingForm.password.$dirty,
-            'has-success' : settingForm.password.$valid && settingForm.password.$dirty
-          }"
-        >
-          <input
-            type="password"
-            class="form-control" 
-            id="input_password" 
-            name="password" 
-            placeholder="请输入密码(6-20个字符)" 
-            ng-model="user.password"
-            required
-            ng-minlength="6"
-            ng-maxlength="20"
-          >
-            <div class="error_tip" ng-if="settingForm.password.$invalid && settingForm.password.$dirty">
-              长度为6-20个字符
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form class="form-horizontal" name="settingForm">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="input_domain" class="col-sm-2 control-label">Domain:</label>
+            <div class="col-sm-10">
+              <!-- <pre>输入值：{{user.domain}}</pre> -->
+              <input 
+                type="text" 
+                class="form-control" 
+                id="input_domain"
+                placeholder="如：foo.yunplus.io"
+                name="domain"
+                required
+                ng-model="user.domain"
+                maxlength="255"
+                pattern="^(?=^.{3,255}$)[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+$"
+              >
+              <p class="error_tip" ng-if="settingForm.domain.$invalid && settingForm.domain.$dirty">
+                请输入正确的Domain
+              </p>
             </div>
-          <div>{{user.password}}</div>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <label for="input_mobile" class="col-sm-2 control-label">手机：</label>
-        <div
-          class="col-sm-10"
-          ng-class="{ 
-            'has-error' : settingForm.mobile.$invalid && settingForm.mobile.$dirty,
-            'has-success' : settingForm.mobile.$valid && settingForm.mobile.$dirty
-          }"
-        >
-          <input 
-            type="text" 
-            class="form-control" 
-            id="input_mobile" 
-            name="mobile"
-            placeholder="请输入手机号" 
-            ng-model="user.mobile"
-            required
-            pattern="^1[345789]\d{9}$"
-          >
-            <div class="error_tip" ng-if="settingForm.mobile.$invalid && settingForm.mobile.$dirty">
-              请输入正确的手机号
-            </div>
-          <div>{{user.mobile}}</div>
-        </div>
-      </div>
+          </div>
 
-      <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-          <button 
-            type="submit"
-            class="btn btn-primary"
-            ng-disabled="settingForm.$invalid" 
-            ng-click="save()"
-          >
-            注册
-          </button>
+          <div class="form-group">
+            <label for="input_langulage" class="col-sm-2 control-label">Langulage:</label>
+            <div class="col-sm-10">
+              <!-- <pre>输入值：{{user.langulage}}</pre> -->
+              <input
+                type="text" 
+                class="form-control" 
+                id="input_langulage" 
+                placeholder="EN"
+                name="langulage"
+                required
+                ng-model="user.langulage"
+                maxlength="20"
+              >
+              <p class="error_tip" ng-if="settingForm.langulage.$invalid && settingForm.langulage.$dirty">
+                  请输入正确的langulage
+                </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="input_sitecode" class="col-sm-2 control-label">Site Code:</label>
+            <div class="col-sm-10">
+              <!-- <pre>输入值：{{user.sitecode}}</pre> -->
+              <input  
+                type="text" 
+                class="form-control" 
+                id="input_sitecode" 
+                placeholder="sub bei api"
+                name="sitecode"
+                required
+                ng-model="user.sitecode"
+                maxlength="20"  
+              >
+              <p class="error_tip" ng-if="settingForm.sitecode.$invalid && settingForm.sitecode.$dirty">
+                请输入正确的site code
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="input_email" class="col-sm-2 control-label">Email:</label>
+            <div class="col-sm-10">
+              <!-- <pre>输入值：{{user.email}}</pre> -->
+              <input 
+                type="email" 
+                class="form-control" 
+                id="input_email" 
+                placeholder="yfsoftcom@126.com"
+                name="email"
+                required
+                ng-model="user.email"
+                maxlength="20"  
+              >
+              <p class="error_tip" ng-if="settingForm.email.$invalid && settingForm.email.$dirty">
+                请输入正确的email
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="input_phone" class="col-sm-2 control-label">Phone:</label>
+            <div class="col-sm-10">
+                <!-- <pre>输入值：{{user.phone}}</pre> -->
+              <input 
+                type="text" 
+                class="form-control" 
+                id="input_phone" 
+                placeholder="13770683580"
+                name="phone"
+                required
+                ng-model="user.phone"
+                maxlength="20" 
+                pattern="^1[345789]\d{9}$"
+              >
+              <p class="error_tip" ng-if="settingForm.phone.$invalid && settingForm.phone.$dirty">
+                  请输入正确的phone
+                </p>
+            </div>
+          </div>
+
         </div>
-      </div>
-    </form>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <button type="submit" class="btn btn-info pull-right" ng-disabled="settingForm.$invalid" ng-click="save()">Save</button>
+        </div>
+        <!-- /.box-footer -->
+      </form>
+    </div>
   </div>
 </div>
 {% endraw %}
