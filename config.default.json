@@ -10,10 +10,10 @@
         "password": "root",
         "showSql": true
     },
-    "upload":
-    {
-        "dir": "public/uploads",
+    "upload":{
+        "dir": "public/uploads/",
         "field": "upload",
+        "uploadRouter": "/upload",
         "base": "/uploads/",
         "accept": [
             "application/octet-stream",

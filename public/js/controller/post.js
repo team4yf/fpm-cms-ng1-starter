@@ -38,11 +38,6 @@ angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
 
         ClassicEditor
             .create( document.querySelector( '#editor' ), {
-              data: {
-                getData: function(src){
-                  return src;
-                }
-              },
               ckfinder: {
                 uploadUrl: '/upload',
               }

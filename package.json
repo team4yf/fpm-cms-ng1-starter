@@ -33,7 +33,7 @@
     "bluebird": "^3.5.2",
     "echarts": "^4.2.0-rc.2",
     "fpm-plugin-mysql": "^1.1.1",
-    "fpm-plugin-upload": "0.0.2",
+    "fpm-plugin-upload": "0.0.3",
     "koa-multer": "^1.0.2",
     "koa-session": "^5.9.0",
     "koa-static": "^5.0.0",
