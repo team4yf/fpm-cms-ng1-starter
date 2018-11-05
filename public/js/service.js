@@ -138,6 +138,7 @@ angular.module('fpm.service', ['ngFpmc', 'io.y+.logger', 'io.y+.user'])
   .service('kit', ['$q', 'ylogger', 'yuser',
   function($q, ylogger, yuser){
     return {
+      swal: Swal,
       alert: function(message, title = '提示', type = 'info'){
         Swal(
           message,

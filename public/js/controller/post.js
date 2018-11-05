@@ -9,8 +9,8 @@ angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
           .then(console.log)
           .catch(console.error)
     }])
-  .controller('PostCreateCtrl', ['$scope', '$ngFpmcService', 'kit',
-    function ($scope, $ngFpmcService, kit) {
+  .controller('PostCreateCtrl', ['$scope', '$ngFpmcService', 'kit', '$http',
+    function ($scope, $ngFpmcService, kit, $http) {
         const { Func, Query } = $ngFpmcService;
         $scope.post = {
           content: '<p>AAABC</p>',
@@ -48,7 +48,29 @@ angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
             .catch( error => {
                 console.error( error );
             } );
-            kit.alert('ok');
+
+        $scope.imageUpload = function(){
+          kit.swal({
+            title: '选择图片',
+            html: `<input type="file" accept="image/*" aria-label="" id="image-file-input" style="display: flex;">`,
+          }).then(function(file){
+            var fd = new FormData(); //初始化一个FormData实例
+            fd.append('upload', document.querySelector('#image-file-input').files[0]);
+
+            $http({
+              method:'POST',
+              url: '/upload',
+              headers: {
+                'Content-Type': undefined
+              },
+              transformRequest: angular.identity,
+              data: fd,
+            })
+            .then((rsp) => {
+              console.log(rsp.data);
+            })
+          })
+        }
         $scope.save = function(){
           kit.toast('hi')
             .then(function(){
