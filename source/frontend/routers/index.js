@@ -23,7 +23,7 @@ exports.CreateMenus = (fpm) => {
 
           },
           login: {
-            image: 'http://imgsrc.baidu.com/imgad/pic/item/0823dd54564e9258904febd29782d158ccbf4e96.jpg',
+            image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=3f6e5055d9ad1d603fd364c11823d026&auto=format&fit=crop&w=1952&q=80',
             welcome: 'FPM CMS World',
           },
 

@@ -9,8 +9,8 @@ angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
           .then(console.log)
           .catch(console.error)
     }])
-  .controller('PostCreateCtrl', ['$scope', '$ngFpmcService', '$q', '$http',
-    function ($scope, $ngFpmcService, $q, $http) {
+  .controller('PostCreateCtrl', ['$scope', '$ngFpmcService', 'kit',
+    function ($scope, $ngFpmcService, kit) {
         const { Func, Query } = $ngFpmcService;
         $scope.post = {
           content: '<p>AAABC</p>',
@@ -48,8 +48,16 @@ angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
             .catch( error => {
                 console.error( error );
             } );
-
+            kit.alert('ok');
         $scope.save = function(){
+          kit.toast('hi')
+            .then(function(){
+              kit.confirm('Yes or no?')
+                .then(function(result){
+                  kit.logger.debug(result.value, 'POST.js');
+                })
+                .catch(kit.logger.error);
+            });
           // var fd = new FormData(); //初始化一个FormData实例
           // fd.append('upload', document.querySelector('#upload').files[0]);
 

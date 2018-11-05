@@ -32,7 +32,22 @@ Prototype: [modao.cc](https://free.modao.cc/app/QVQaMYO4sdMe67xc9rJHRJDhZYLDEE5#
 
   > If you want to output any of the special Nunjucks tags like {{, you can use a {{, you can use a {% raw %} block and anything inside of it will be output as plain text.
 
-5) See more FAQ in [FAQ.md](./FAQ.md)。
+5) How to use sweetAlert2 in javascript?
+
+  ```javascript
+  // import the kit module
+  controller('PostCreateCtrl', ['$scope', '$ngFpmcService', 'kit',
+    function ($scope, $ngFpmcService, kit) {
+      kit.alert('ok');
+      kit.toast('ok'); // this returns a promise after the toast dismiss
+      kit.confirm('Yes or no?')
+        .then(function(result){
+          kit.logger.debug(result.value); // the result.value will be true if 'Yes' Clicked !
+        })
+    })
+  ```
+
+6) See more FAQ in [FAQ.md](./FAQ.md)。
 
 ## Source Directory
 
