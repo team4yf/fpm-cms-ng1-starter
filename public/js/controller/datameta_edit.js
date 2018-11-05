@@ -8,8 +8,8 @@ angular.module('fpm.c.datameta_edit', ['fpm.service', 'fpm.filter'])
       //   mobile : '',
       //   password : ''
       // };
-      $scope.rows; //所有数据
-      $scope.pages; //总页数
+      // $scope.rows; //所有数据
+      // $scope.pages; //总页数
       $scope.page = 1; //当前页数
       $scope.searchValue = ''; //搜索值
       // $scope.isdisabled = true;
@@ -37,29 +37,23 @@ angular.module('fpm.c.datameta_edit', ['fpm.service', 'fpm.filter'])
 
 
       // 获取参数
-      $scope.getUrlParam = function (name) {
-        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-        var r = window.location.search.substr(1).match(reg); //匹配目标参数
-        if (r != null) return unescape(r[2]); return null; //返回参数值
-      }
-
-      var url_data = $scope.getUrlParam('id');
-      console.log('参数:',url_data);
-
+      
+      var url_data = APP.query
+      console.log('参数id：', url_data.id);
 
       
       // 加载数据
       $scope.loading = function(){
         var obj = new Query('cms_datameta_edit');
-          console.log($scope.page)
-          obj.condition(`datameta_id = '${url_data}'`)
+          // console.log('当前页数',$scope.page)
+          obj.condition(`datameta_id = '${url_data.id}'`)
             .page($scope.page, 10)
             .findAndCount()
             .then(function (data) {
               console.log(data);
               $scope.rows = data.rows;
-              $scope.pages = Math.ceil(data.count / 10)
-              console.log('总页数：', $scope.pages)
+              // $scope.pages = Math.ceil(data.count / 10)
+              // console.log('总页数：', $scope.pages)
             }).catch(function (err) {
               console.error(err);
             });
