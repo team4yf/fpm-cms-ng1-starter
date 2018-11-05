@@ -40,21 +40,21 @@
           </div>
 
           <div class="form-group">
-            <label for="input_langulage" class="col-sm-2 control-label">Langulage:</label>
+            <label for="input_language" class="col-sm-2 control-label">Language:</label>
             <div class="col-sm-10">
-              <!-- <pre>输入值：{{user.langulage}}</pre> -->
+              <!-- <pre>输入值：{{user.language}}</pre> -->
               <input
                 type="text" 
                 class="form-control" 
-                id="input_langulage" 
+                id="input_language" 
                 placeholder="EN"
-                name="langulage"
+                name="language"
                 required
-                ng-model="user.langulage"
+                ng-model="user.language"
                 maxlength="20"
               >
-              <p class="error_tip" ng-if="settingForm.langulage.$invalid && settingForm.langulage.$dirty">
-                  请输入正确的langulage
+              <p class="error_tip" ng-if="settingForm.language.$invalid && settingForm.language.$dirty">
+                  请输入正确的language
                 </p>
             </div>
           </div>

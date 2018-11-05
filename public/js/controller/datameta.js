@@ -60,25 +60,25 @@ angular.module('fpm.c.datameta', ['fpm.service', 'fpm.filter'])
 
 
 
-      // 上一页
-      $scope.prePage = function () {
-        if ($scope.page > 1) {
-          $scope.page -= 1;
-          console.log('当前页数', $scope.page);
-          $scope.loading();
+      // // 上一页
+      // $scope.prePage = function () {
+      //   if ($scope.page > 1) {
+      //     $scope.page -= 1;
+      //     console.log('当前页数', $scope.page);
+      //     $scope.loading();
           
-        }
-      };
+      //   }
+      // };
 
-      // 下一页
-      $scope.nextPage = function () {
-        if ($scope.page < $scope.pages) {
-          $scope.page += 1;
-          console.log('当前页数', $scope.page);
+      // // 下一页
+      // $scope.nextPage = function () {
+      //   if ($scope.page < $scope.pages) {
+      //     $scope.page += 1;
+      //     console.log('当前页数', $scope.page);
 
-          $scope.loading();
-        }
-      };
+      //     $scope.loading();
+      //   }
+      // };
 
 
       // $scope.user = {

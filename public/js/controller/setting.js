@@ -5,7 +5,7 @@ angular.module('fpm.c.setting', ['fpm.service', 'fpm.filter'])
         // console.log('aaa', $ngFpmcService);
         $scope.user = {
           domain : '',
-          langulage : '',
+          language : '',
           sitecode : '',
           email : '',
           phone : ''

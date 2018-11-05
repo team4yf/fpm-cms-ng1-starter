@@ -1,4 +1,3 @@
-<!-- {% extends "views/templates/void-main.html" %} -->
 {% extends "views/templates/void-main-with-footer.html" %}
 {% block title %} 数据列表--编辑 {% endblock %}
 {% block head %}
@@ -31,8 +30,11 @@
           <tbody>
             <tr>
               <th>ID</th>
-              <th>Data</th>
-              <th>Manage</th>
+              <th>Title</th>
+              <th>ColumnName</th>
+              <th>FormType</th>
+              <th>Type</th>
+              <th>-</th>
             </tr>
             <tr ng-show="rows == ''">
               <td colspan="6" style="text-align: center;height: 100px;line-height: 100px">没有数据</td>
@@ -42,10 +44,16 @@
                 {{x._d.id}}
               </td>
               <td>
-                {{x._d.data}}
+                {{x._d.title}}
               </td>
               <td>
-                <a href="#">{{x._d.manage}}</a>
+                {{x._d.columnName}}
+              </td>
+              <td>
+                {{x._d.formType}}
+              </td>
+              <td>
+                {{x._d.type}}
               </td>
               <td>
                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" ng-click="edit(x._d)">
@@ -60,7 +68,7 @@
         </table>
       </div>
       <!-- /.box-body -->
-      <div class="box-footer clearfix">
+      <!-- <div class="box-footer clearfix">
           <ul class="pagination pull-right">
               <li class="disabled">
                 <a href="#">
@@ -76,7 +84,7 @@
                 </a>
               </li>
             </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -92,40 +100,80 @@
         <div class="modal-body">
           <form class="form-horizontal" name="editForm">
             <div class="form-group">
-              <label for="input_data" class="col-sm-2 control-label">data:</label>
+              <label for="input_title" class="col-sm-2 control-label">Title:</label>
               <div class="col-sm-10">
                 <input 
                   type="text" 
                   class="form-control" 
-                  id="input_data" 
+                  id="input_title" 
                   placeholder="如：foo.yunplus.io" 
-                  name="data"
+                  name="title"
                   required 
                   maxlength="20" 
-                  ng-model="modal.data" 
-                  ng-value="modal.data">
-                <p class="error_tip" ng-if="editForm.domain.$invalid && editForm.domain.$dirty">
-                  请输入data
+                  ng-model="modal.title" 
+                  value="modal.title">
+                <!-- <p class="error_tip" ng-if="editForm.title.$invalid && editForm.title.$dirty">
+                  请输入title
+                </p> -->
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="input_columnName" class="col-sm-2 control-label">ColumnName:</label>
+              <div class="col-sm-10">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="input_columnName" 
+                  placeholder="EN" 
+                  name="columnName" 
+                  required
+                  maxlength="20" 
+                  ng-model="modal.columnName" 
+                  value="modal.columnName"
+                >
+                <p class="error_tip" ng-if="editForm.columnName.$invalid && editForm.columnName.$dirty">
+                  请输入columnName
                 </p>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="input_manage" class="col-sm-2 control-label">manage:</label>
+              <label for="input_formType" class="col-sm-2 control-label">FormType:</label>
               <div class="col-sm-10">
                 <input 
                   type="text" 
                   class="form-control" 
-                  id="input_manage" 
+                  id="input_formType" 
                   placeholder="EN" 
-                  name="manage" 
+                  name="formType" 
                   required
                   maxlength="20" 
-                  ng-model="modal.manage" 
-                  ng-value="modal.manage"
+                  ng-model="modal.formType" 
+                  value="modal.formType"
                 >
-                <p class="error_tip" ng-if="editForm.langulage.$invalid && editForm.langulage.$dirty">
-                  请输入manage
+                <p class="error_tip" ng-if="editForm.formType.$invalid && editForm.formType.$dirty">
+                  请输入FormType
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="input_type" class="col-sm-2 control-label">Type:</label>
+              <div class="col-sm-10">
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  id="input_type" 
+                  placeholder="EN" 
+                  name="type" 
+                  required
+                  maxlength="20" 
+                  ng-model="modal.type" 
+                  value="modal.type"
+                >
+                <p class="error_tip" ng-if="editForm.type.$invalid && editForm.type.$dirty">
+                  请输入type
                 </p>
               </div>
             </div>
