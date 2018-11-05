@@ -44,7 +44,7 @@
                 {{x._d.data}}
               </td>
               <td>
-                <a href="/cms/datameta/edit">{{x._d.manage}}</a>
+                <a ng-href="datameta/edit?id={{x._d.id}}">{{x._d.manage}}</a>
               </td>
               <td>
                 <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" ng-click="edit(x._d)">
@@ -59,7 +59,7 @@
         </table>
       </div>
       <!-- /.box-body -->
-      <div class="box-footer clearfix">
+      <!-- <div class="box-footer clearfix">
           <ul class="pagination pull-right">
               <li class="disabled">
                 <a href="#">
@@ -75,7 +75,7 @@
                 </a>
               </li>
             </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 
@@ -102,8 +102,8 @@
                   required 
                   maxlength="20" 
                   ng-model="modal.data" 
-                  ng-value="modal.data">
-                <p class="error_tip" ng-if="editForm.domain.$invalid && editForm.domain.$dirty">
+                  value="modal.data">
+                <p class="error_tip" ng-if="editForm.data.$invalid && editForm.data.$dirty">
                   请输入data
                 </p>
               </div>
@@ -121,9 +121,9 @@
                   required
                   maxlength="20" 
                   ng-model="modal.manage" 
-                  ng-value="modal.manage"
+                  value="modal.manage"
                 >
-                <p class="error_tip" ng-if="editForm.langulage.$invalid && editForm.langulage.$dirty">
+                <p class="error_tip" ng-if="editForm.manage.$invalid && editForm.manage.$dirty">
                   请输入manage
                 </p>
               </div>
