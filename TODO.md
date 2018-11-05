@@ -1,6 +1,6 @@
 ## TODO List
 
-- Dashboard
-- Device Manager
-- Control
-- Setting
+- Setting 模块
+  1) 打开页面需要加载已保存的设置，数据表中至少保留一条默认数据。
+  2) 保存后页面无需刷新。
+  3) 将 setting 表的构建语句保存为 sql 文件，添加到 sql 目录下。
