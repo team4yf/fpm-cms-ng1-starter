@@ -64,3 +64,11 @@ menus:
     icon: 'cogs'
     path: '/cms/setting'
     page: 'pages/cms/setting.html'
+
+  - type: '-'
+    title: 'MQTT'
+
+  - title: '在线调试'
+    icon: 'cogs'
+    path: '/console/debug'
+    page: 'pages/console/debug.html'

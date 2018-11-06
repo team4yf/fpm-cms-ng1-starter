@@ -59,7 +59,7 @@ angular.module('fpm.c.post', ['fpm.service', 'fpm.filter'])
 
             $http({
               method:'POST',
-              url: '/upload',
+              // url: '/upload',
               headers: {
                 'Content-Type': undefined
               },
