@@ -1,0 +1,141 @@
+{% extends "views/templates/void-main-with-footer.html" %}
+{% block title %} 多级菜单 {% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/css/category.css">
+{% endblock %}
+
+{% block contentid %}category{% endblock %}
+{% block content %}
+{% raw %}
+<!-- html内容 -->
+<div id="category" ng-controller="CategoryCtrl">
+
+  <section class="content-header">
+    <h1>
+      多级菜单
+    </h1>
+  </section>
+  <section class="content">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">菜单列表</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <div class="box-body">
+        <button class="btn btn-primary btn-sm" ng-click="add_1()">添加</button>
+        <br>
+        <br>
+        <div class="ul_box">
+          <ul ng-repeat="a in data.first">
+            <li ng-show="a.del == false">
+              <!-- 一级菜单 -->
+              <span class="first_span" ng-click="show_1(a)">
+                <i class="fa fa-minus">&nbsp;</i>
+                <span ng-show="a.spanShow">{{a._d.name}}</span>
+                <label class="input_box">
+                  <input 
+                    type="text" 
+                    placeholder="请输入菜单名"
+                    maxlength="20" 
+                    ng-show="a.inputShow"
+                    ng-model="a._d.name" 
+                    value="a._d.name" 
+                    ng-blur="blur_1(a);$event.stopPropagation();"
+                    ng-click="$event.stopPropagation();"
+                  >
+                  <span class="action" ng-click="$event.stopPropagation();">
+                    <i class="fa fa-pencil-square-o" style="color:#5BC0DE" title="编辑名称" ng-click="edit_1(a); $event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
+                    <i class="fa fa-plus-circle" style="color:#5CB85C" title="添加二级菜单" ng-click="add_2(a); $event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
+                    <i class="fa fa-remove" style="color:#D9534F" title="删除" ng-click="remove_1(a); $event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
+                  </span>
+                </label>
+              </span>
+              <ul ng-repeat="b in data.second">
+                <li ng-show="a.show && b.del == false">
+                  <!-- 二级菜单 -->
+                  <span class="second_span" ng-if="a._d.id == b._d.first_id" ng-click="show_2(b)">
+                    <i class="fa fa-minus">&nbsp;</i>
+                    <span ng-show="b.spanShow">{{b._d.name}}</span>
+                    <label class="input_box">
+                      <input 
+                        type="text" 
+                        placeholder="请输入菜单名"
+                        maxlength="20" 
+                        ng-show="b.inputShow"
+                        ng-model="b._d.name" 
+                        value="b._d.name" 
+                        ng-blur="blur_2(b);$event.stopPropagation();"
+                        ng-click="$event.stopPropagation();"
+                      >
+                      <span class="action">
+                        <i class="fa fa-pencil-square-o" style="color:#5BC0DE" title="编辑名称" ng-click="edit_2(b);$event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
+                        <i class="fa fa-plus-circle" style="color:#5CB85C" title="添加三级菜单" ng-click="add_3(b);$event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
+                        <i class="fa fa-remove" style="color:#D9534F" title="删除" ng-click="remove_2(b);$event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
+                      </span>
+                    </label>
+                    
+                  </span>
+                  <ul ng-repeat="c in data.third">
+                    <li ng-show="b.show && c.del == false">
+                      <!-- 三级菜单 -->
+                      <span class="third_span" ng-if="a._d.id == b._d.first_id && b._d.id == c._d.second_id">
+                        <i class="fa fa-minus">&nbsp;</i>
+                        <span ng-show="c.spanShow">{{c._d.name}}</span>
+                        <label class="input_box">
+                          <input 
+                            type="text" 
+                            placeholder="请输入菜单名"
+                            maxlength="20" 
+                            ng-show="c.inputShow"
+                            ng-model="c._d.name" 
+                            value="c._d.name" 
+                            ng-blur="blur_3(c);$event.stopPropagation();"
+                            ng-click="$event.stopPropagation();"
+                          >
+                          <span class="action">
+                            <i class="fa fa-pencil-square-o" style="color:#5BC0DE" title="编辑名称" ng-click="edit_3(c);$event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
+                            <i class="fa fa-remove" style="color:#D9534F" title="删除" ng-click="remove_3(c);$event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
+                          </span>
+                        </label>
+                        
+                      </span>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /.box-body -->
+      <!-- <div class="box-footer">
+        <button type="submit" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-info pull-right">Sign in</button>
+      </div> -->
+      <!-- /.box-footer -->
+    </div>
+  </section>
+  
+
+
+  
+  
+  
+
+</div>
+{% endraw %}
+
+
+{% endblock %}
+{% block script %}
+
+<!-- 引入js -->
+<script src="/js/controller/category.js"></script>
+{% endblock %}
+{% block js %}
+<script>
+  "use strict";
+  angular.module('app', ['fpm.c.category'])
+</script>
+{% endblock %}

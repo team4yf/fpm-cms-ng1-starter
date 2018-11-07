@@ -36,6 +36,11 @@ menus:
     icon: 'tags'
     path: '/cms/tags'
     page: 'pages/cms/tags.html'
+  
+  - title: '多级菜单'
+    icon: 'bars'
+    path: '/cms/category'
+    page: 'pages/cms/category.html'
 
   - type: '-'
     title: '用户'
@@ -49,7 +54,7 @@ menus:
     title: '列表'
 
   - title: '数据列表'
-    icon: 'users'
+    icon: 'file-text-o'
     path: '/cms/datameta'
     page: 'pages/cms/datameta.html'
 

@@ -1,0 +1,67 @@
+#tags{
+  /* background: #000; */
+  /* padding: 30px; */
+}
+
+#tags .tag_box{
+  /* padding: 15px;
+  background: #fff; */
+}
+
+#tags .tag_box .tag{
+  position: relative;
+  display: inline-block;
+  padding: 5px 20px;
+  border:1px solid #D2D6DE;
+  border-radius: 28px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+#tags .tag_box .tag:hover .remove{
+  display: inline;
+}
+
+#tags .tag_box .tag label{
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+#tags .tag .remove{
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  display: none;
+  color: #f00;
+  border-radius: 100%;
+  font-size: 10px;
+  padding: 3px;
+}
+
+#tags .tag .remove:hover{
+  color: #fff;
+  background: #f00;
+  cursor: pointer;
+}
+
+#tags .tag input{
+  height: 23px;
+}
+
+#tags .btn_add{
+  display: inline-block;
+  padding: 5px 20px;
+  border-radius: 28px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  background: #5BC0DE;
+  color: #fff;
+  
+}
+
+#tags .btn_add:hover{
+  background: #31B0D5;
+}
+
+
+

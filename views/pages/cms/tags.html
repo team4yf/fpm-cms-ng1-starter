@@ -1,0 +1,78 @@
+{% extends "views/templates/void-main-with-footer.html" %}
+{% block title %} 标签 {% endblock %}
+{% block head %}
+<link rel="stylesheet" href="/css/tags.css">
+{% endblock %}
+
+{% block contentid %}tags{% endblock %}
+{% block content %}
+{% raw %}
+<!-- html内容 -->
+<div id="tags" ng-controller="TagsCtrl">
+  
+  <section class="content-header">
+    <h1>
+      标签管理
+    </h1>
+  </section>
+  <section class="content">
+    <div class="box box-info">
+      <div class="box-header with-border">
+        <h3 class="box-title">标签</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <div class="box-body">
+        <div class="tag_box">
+          <div class="tag" ng-repeat="x in data" ng-show="x.tagShow">
+            <span 
+              class="glyphicon glyphicon-remove remove" 
+              ng-show="removeShow"
+              ng-click="remove(x); $event.stopPropagation();"
+            >
+            </span>
+            <label ng-click="click(x)">
+              <span for="input" ng-show="x.spanShow">{{x._d.tagName}}</span>
+              <input 
+                type="text" 
+                placeholder="请输入标签名"
+                maxlength="20" 
+                ng-show="x.inputShow"
+                ng-model="x._d.tagName" 
+                value="x._d.tagName" 
+                ng-blur="blur(x)"
+              >
+            </label>
+          </div>
+          
+          <span class="btn_add" ng-click="add()">
+            添加
+          </span>
+      
+        </div>
+      </div>
+      <!-- /.box-body -->
+      <!-- <div class="box-footer">
+        <button type="submit" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-info pull-right">Sign in</button>
+      </div> -->
+      <!-- /.box-footer -->
+    </div>
+  </section>
+  
+</div>
+{% endraw %}
+
+
+{% endblock %}
+{% block script %}
+
+<!-- 引入js -->
+<script src="/js/controller/tags.js"></script>
+{% endblock %}
+{% block js %}
+<script>
+  "use strict";
+  angular.module('app', ['fpm.c.tags'])
+</script>
+{% endblock %}

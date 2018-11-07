@@ -13,10 +13,7 @@ angular.module('fpm.c.datameta', ['fpm.service', 'fpm.filter'])
       $scope.page = 1; //当前页数
       $scope.searchValue = ''; //搜索值
       // $scope.isdisabled = true;
-      const {
-        Func,
-        Query
-      } = $ngFpmcService;
+      const {Func,Query} = $ngFpmcService;
 
       //搜索
       $scope.search = function () {

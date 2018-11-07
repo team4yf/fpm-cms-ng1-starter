@@ -1,0 +1,53 @@
+#category{
+  /* background: #fff; */
+  /* padding: 15px;  */
+}
+
+#category ul{
+  list-style-type: none;
+}
+
+/* #category ul li span{
+  cursor: pointer;
+} */
+
+#category .first_span{
+  cursor: pointer;
+}
+
+#category .second_span{
+  cursor: pointer;
+}
+
+#category .third_span{
+  cursor: pointer;
+}
+
+#category .action{
+  display: none;
+  padding: 0 15px;
+}
+
+#category .action i{
+  cursor: pointer;
+}
+#category .input_box{
+  margin-bottom: 0;
+  font-weight: normal;
+}
+
+#category .input_box input{
+  /* height: 23px; */
+}
+
+#category .first_span:hover .action{
+  display: inline;
+}
+
+#category .second_span:hover .action{
+  display: inline;
+}
+
+#category .third_span:hover .action{
+  display: inline;
+}
