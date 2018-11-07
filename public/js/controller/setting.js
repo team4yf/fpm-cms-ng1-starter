@@ -1,7 +1,7 @@
 "use strict";
-app.controller('SettingCtrl', ['$scope', '$ngFpmcService',
-    function ($scope, $ngFpmcService) {
-        // console.log('aaa', $ngFpmcService);
+app.controller('SettingCtrl', ['$scope', '$ngFpmcService','kit',
+    function ($scope, $ngFpmcService, kit) {
+        // kit.logger.debug('aaa', $ngFpmcService);
         $scope.user = {
           domain : '',
           language : '',
@@ -18,13 +18,15 @@ app.controller('SettingCtrl', ['$scope', '$ngFpmcService',
               obj.set($scope.user)
                   .create()
                   .then(function(data){
-                    alert('注册成功');
-                    location.reload();
-                    console.log(data);
+                    kit.alert('注册成功');
+                    setTimeout(
+                      ()=>{location.reload()},1000
+                    )
+                    kit.logger.debug(data);
                   }).catch(function(err){
-                    console.error(err);
+                    kit.logger.debug(err);
                   });
-            console.log($scope.user);
+            kit.logger.debug($scope.user);
           }
         }
         

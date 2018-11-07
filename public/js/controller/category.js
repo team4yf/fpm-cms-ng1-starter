@@ -1,6 +1,6 @@
 "use strict";
 
-  app.controller('CategoryCtrl', ['$scope', '$ngFpmcService',function ($scope, $ngFpmcService) {
+  app.controller('CategoryCtrl', ['$scope', '$ngFpmcService', 'kit',function ($scope, $ngFpmcService,kit) {
       
       const { Func, Query, Obj } = $ngFpmcService;
       
@@ -24,9 +24,9 @@
                 data.rows[i].del = false;
               }
               $scope.data.first = data.rows;
-              console.log($scope.data.first);
+              kit.logger.debug($scope.data.first);
             }).catch(function (err) {
-              console.error(err);
+              kit.logger.debug(err);
             });
       }
 
@@ -44,9 +44,9 @@
                 data.rows[i].del = false;
               }
               $scope.data.second = data.rows;
-              console.log($scope.data.second);
+              kit.logger.debug($scope.data.second);
             }).catch(function (err) {
-              console.error(err);
+              kit.logger.debug(err);
             });
       }
 
@@ -63,9 +63,9 @@
                 data.rows[i].del = false;
               }
               $scope.data.third = data.rows;
-              console.log($scope.data.third);
+              kit.logger.debug($scope.data.third);
             }).catch(function (err) {
-              console.error(err);
+              kit.logger.debug(err);
             });
       }
 
@@ -81,7 +81,7 @@
         }else{
           item.show = true;
         }
-        console.log(item);
+        kit.logger.debug(item);
       }
 
       $scope.show_2 = function(item){
@@ -92,34 +92,33 @@
         }else{
           item.show = true;
         }
-        console.log(item);
+        kit.logger.debug(item);
       }
 
 
       $scope.add_1 = function(){
-        // alert(1);
         var obj = new Obj('cms_category');
           obj.set()
             .create()
             .then(function(data){
-              console.log('添加成功');
+              kit.logger.debug('添加成功');
               $scope.firstData();
-              console.log(data);
+              kit.logger.debug(data);
             }).catch(function(err){
-              console.error(err);
+              kit.logger.debug(err);
             });
       }
 
       // 点击编辑first
       $scope.edit_1 = function(item){
-        console.log(item);
+        kit.logger.debug(item);
         item.spanShow = false;
         item.inputShow = true;
       }
 
       //失去焦点保存first
       $scope.blur_1 = function(item){
-        console.log(item);
+        kit.logger.debug(item);
         item.spanShow = true;
         item.inputShow = false;
         if(item._d.name == ''){
@@ -127,20 +126,20 @@
         }
 
         let id = item._d.id
-        console.log(id);
+        kit.logger.debug(id);
           var obj = new Obj('cms_category',{ id });
             obj.save(item._d)
               .then(function(data){
-                console.log('保存成功');
-                console.log(data);
+                kit.logger.debug('保存成功');
+                kit.logger.debug(data);
               }).catch(function(err){
-                console.error(err);
+                kit.logger.debug(err);
               });
       }
 
       // 添加二级菜单
       $scope.add_2 = function (item){
-        console.log(item);
+        kit.logger.debug(item);
         var parent_id = item._d.id
         var obj = new Obj('cms_category');
           obj.set({
@@ -154,17 +153,17 @@
                 }else{
                   item.show = true;
                 }
-                console.log('添加成功');
+                kit.logger.debug('添加成功');
                 $scope.secondData();
-                console.log(data);
+                kit.logger.debug(data);
               }).catch(function(err){
-                console.error(err);
+                kit.logger.debug(err);
               });
       }
 
       // 删除一级菜单
       $scope.remove_1 = function(item){
-        console.log(item);
+        kit.logger.debug(item);
         var id = item._d.id;
 
         var count;
@@ -173,33 +172,36 @@
         search.condition(`parent_id = '${id}'`)
           .findAndCount()
           .then(function (data) {
-            console.log(data);
+            kit.logger.debug(data);
             count = data.count;
-            console.log(count);
+            kit.logger.debug(count);
 
             if(count == 0){
-              var ifRemove = confirm("确认删除吗?");
-              if(!ifRemove){
-                return false;
-              }else{
-                var obj = new Obj('cms_category', {id});
-                obj.remove()
-                  .then(function(data){
-                    console.log(data);
-                    // $scope.firstData();
-                    item.del = true;
-                    alert('删除成功');
-                  }).catch(function(err){
-                    console.error(err);
-                    alert('删除失败，请联系管理员');
-                  });
-              }
+              kit.confirm("确认删除吗?")
+              .then(function(result){
+                kit.logger.debug(result.value);
+                if(result.value == true){
+                  var obj = new Obj('cms_category', {id});
+                  obj.remove()
+                    .then(function(data){
+                      kit.logger.debug(data);
+                      // $scope.firstData();
+                      item.del = true;
+                      kit.alert('删除成功');
+                    }).catch(function(err){
+                      kit.logger.debug(err);
+                      kit.alert('删除失败，请联系管理员');
+                    });
+                }
+              })
+              
+              
             }else{
-              alert('请先删除子菜单');
+              kit.kit.alert('请先删除子菜单');
             }
 
           }).catch(function (err) {
-            console.error(err);
+            kit.logger.debug(err);
           });
 
         
@@ -212,14 +214,14 @@
 
       // 点击编辑second
       $scope.edit_2 = function(item){
-        console.log(item);
+        kit.logger.debug(item);
         item.spanShow = false;
         item.inputShow = true;
       }
 
       //失去焦点保存second
       $scope.blur_2 = function(item){
-        console.log(item);
+        kit.logger.debug(item);
         item.spanShow = true;
         item.inputShow = false;
         if(item._d.name == ''){
@@ -227,20 +229,20 @@
         }
 
         let id = item._d.id
-        console.log(id);
+        kit.logger.debug(id);
           var obj = new Obj('cms_category',{ id });
             obj.save(item._d)
               .then(function(data){
-                console.log('保存成功');
-                console.log(data);
+                kit.logger.debug('保存成功');
+                kit.logger.debug(data);
               }).catch(function(err){
-                console.error(err);
+                kit.logger.debug(err);
               });
       }
 
       // 添加三级菜单
       $scope.add_3 = function (item){
-        console.log(item);
+        kit.logger.debug(item);
         var parent_id = item._d.id
         var obj = new Obj('cms_category');
           obj.set({
@@ -254,17 +256,17 @@
                 }else{
                   item.show = true;
                 }
-                console.log('添加成功');
+                kit.logger.debug('添加成功');
                 $scope.thirdData();
-                console.log(data);
+                kit.logger.debug(data);
               }).catch(function(err){
-                console.error(err);
+                kit.logger.debug(err);
               });
       }
 
       // 删除二级菜单
       $scope.remove_2 = function(item){
-        console.log(item);
+        kit.logger.debug(item);
         var id = item._d.id;
 
         var count;
@@ -273,41 +275,44 @@
         search.condition(`parent_id = '${id}'`)
           .findAndCount()
           .then(function (data) {
-            console.log(data);
+            kit.logger.debug(data);
             count = data.count;
-            console.log(count);
+            kit.logger.debug(count);
 
             if(count == 0){
-              var ifRemove = confirm("确认删除吗?");
-              if(!ifRemove){
-                return false;
-              }else{
-                var obj = new Obj('cms_category', {id});
-                obj.remove()
-                  .then(function(data){
-                    console.log(data);
-                    // $scope.secondData();
-                    item.del = true;
-                    console.log(item);
-                    alert('删除成功');
-                  }).catch(function(err){
-                    console.error(err);
-                    alert('删除失败，请联系管理员');
-                  });
-              }
+              kit.confirm('确定删除吗?')
+                .then(function(result){
+                  kit.logger.debug(result.value);
+                  if(result.value == true){
+                    var obj = new Obj('cms_category', {id});
+                    obj.remove()
+                      .then(function(data){
+                        kit.logger.debug(data);
+                        // $scope.secondData();
+                        item.del = true;
+                        kit.logger.debug(item);
+                        kit.alert('删除成功');
+                      }).catch(function(err){
+                        kit.logger.debug(err);
+                        kit.alert('删除失败，请联系管理员');
+                      });
+                  }
+                })
+
+              
             }else{
-              alert('请先删除子菜单');
+              kit.alert('请先删除子菜单');
             }
 
           }).catch(function (err) {
-            console.error(err);
+            kit.logger.debug(err);
           });
       }
 
 
       //点击编辑三级菜单
       $scope.edit_3 = function(item){
-        console.log(item);
+        kit.logger.debug(item);
         item.spanShow = false;
         item.inputShow = true;
       }
@@ -315,7 +320,7 @@
 
       //失去焦点保存三级菜单
       $scope.blur_3 = function(item){
-        console.log(item);
+        kit.logger.debug(item);
         item.spanShow = true;
         item.inputShow = false;
         if(item._d.name == ''){
@@ -323,20 +328,20 @@
         }
 
         let id = item._d.id
-        console.log(id);
+        kit.logger.debug(id);
           var obj = new Obj('cms_category',{ id });
             obj.save(item._d)
               .then(function(data){
-                console.log('保存成功');
-                console.log(data);
+                kit.logger.debug('保存成功');
+                kit.logger.debug(data);
               }).catch(function(err){
-                console.error(err);
+                kit.logger.debug(err);
               });
       }
 
 
       $scope.remove_3 = function(item){
-        console.log(item);
+        kit.logger.debug(item);
         var id = item._d.id
         
         var ifRemove = confirm("确认删除吗?");
@@ -346,14 +351,14 @@
             var obj = new Obj('cms_category', {id});
             obj.remove()
               .then(function(data){
-                console.log(data);
+                kit.logger.debug(data);
                 // $scope.thirdData();
                 item.del = true;
-                console.log(item);
-                alert('删除成功');
+                kit.logger.debug(item);
+                kit.alert('删除成功');
               }).catch(function(err){
-                console.error(err);
-                alert('删除失败，请联系管理员');
+                kit.logger.debug(err);
+                kit.alert('删除失败，请联系管理员');
               });
           }
       }

@@ -1,7 +1,6 @@
 "use strict";
-angular.module('fpm.c.tags', ['fpm.service', 'fpm.filter'])
-  .controller('TagsCtrl', ['$scope', '$ngFpmcService',
-    function ($scope, $ngFpmcService) {
+  app.controller('TagsCtrl', ['$scope', '$ngFpmcService','kit',
+    function ($scope, $ngFpmcService, kit) {
 
       $scope.removeShow = true;
 
@@ -11,16 +10,16 @@ angular.module('fpm.c.tags', ['fpm.service', 'fpm.filter'])
         var obj = new Query('cms_tags');
           obj.find()
             .then(function (data) {
-              // console.log(data);
+              // kit.logger.debug(data);
               $scope.data = data;
               for(var i = 0;i<data.length;i++){
                 data[i].spanShow = true;
                 data[i].inputShow = false;
                 data[i].tagShow = true;
               }
-              console.log($scope.data);
+              kit.logger.debug($scope.data);
             }).catch(function (err) {
-              console.error(err);
+              kit.logger.debug(err);
             });
       }
 
@@ -40,7 +39,7 @@ angular.module('fpm.c.tags', ['fpm.service', 'fpm.filter'])
     // 点击标签
       $scope.click = function(item){
         $scope.removeShow = false;
-        console.log(item);
+        kit.logger.debug(item);
         item.spanShow = false;
         item.inputShow = true;
         
@@ -55,8 +54,8 @@ angular.module('fpm.c.tags', ['fpm.service', 'fpm.filter'])
         item.inputShow = false;
         
 
-        console.log(item);
-        console.log(item._d.tagName);
+        kit.logger.debug(item);
+        kit.logger.debug(item._d.tagName);
         if(item._d.tagName == ''){
           item._d.tagName = '标签名';
         }
@@ -66,35 +65,37 @@ angular.module('fpm.c.tags', ['fpm.service', 'fpm.filter'])
           var obj = new Obj('cms_tags',{ id });
             obj.save(item._d)
               .then(function(data){
-                // alert('保存成功');
-                console.log('保存成功');
-                console.log(data);
+                // kit.alert('保存成功');
+                kit.logger.debug('保存成功');
+                kit.logger.debug(data);
               }).catch(function(err){
-                console.error(err);
+                kit.logger.debug(err);
               });
       }
 
 
       // 删除事件
       $scope.remove = function(item){
-        console.log(item._d.id);
+        kit.logger.debug(item._d.id);
         var id = item._d.id;
-        var ifRemove = confirm("确认删除吗?");
-        if(!ifRemove){
-          return false;
-        }else{
-          const { Func, Obj } = $ngFpmcService;
-          var obj = new Obj('cms_tags', {id});
-          obj.remove()
-            .then(function(data){
-              console.log(data);
-              item.tagShow = false;
-              alert('删除成功');
-            }).catch(function(err){
-              console.error(err);
-              alert('删除失败，请联系管理员');
-            });
-        }
+        kit.confirm("确认删除吗?")
+        .then(function(result){
+          kit.logger.debug(result.value);
+          if(result.value == true){
+            const { Func, Obj } = $ngFpmcService;
+            var obj = new Obj('cms_tags', {id});
+            obj.remove()
+              .then(function(data){
+                kit.logger.debug(data);
+                item.tagShow = false;
+                kit.alert('删除成功');
+              }).catch(function(err){
+                kit.logger.debug(err);
+                kit.alert('删除失败，请联系管理员');
+              });
+          }
+        })
+        
         
       }
 
@@ -105,11 +106,11 @@ angular.module('fpm.c.tags', ['fpm.service', 'fpm.filter'])
             obj.set()
                 .create()
                 .then(function(data){
-                  console.log('添加成功');
+                  kit.logger.debug('添加成功');
                   $scope.loading();
-                  console.log(data);
+                  kit.logger.debug(data);
                 }).catch(function(err){
-                  console.error(err);
+                  kit.logger.debug(err);
                 });
       }
 
