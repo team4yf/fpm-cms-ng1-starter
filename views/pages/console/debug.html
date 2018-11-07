@@ -1,0 +1,69 @@
+{% extends "views/templates/void-main-with-footer.html" %}
+{% block title %} 在线调试 {% endblock %}
+{% block head %}
+<!-- include extra css -->
+<!-- <link rel="stylesheet" href="/lib/admin-lte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"> -->
+{% endblock %}
+{% block content %}
+<div>
+  {% raw %}
+  <div ng-controller="DebugCtrl" ng-cloak>
+    <section class="content-header">
+      <h1>
+        在线调试
+      </h1>
+    </section>
+
+      <!-- Main content -->
+    <section class="content">
+      <p> MQTT Debuger</p>
+      <div class="row">
+        <div class="col-md-12">
+        <div class="box box-warning">
+          <div class="box-header with-border">
+            <h3 class="box-title">General Elements</h3>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <form role="form">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Topic</label>
+                <input type="text" class="form-control" ng-model="message.topic" placeholder="$s2d/a133333333/get">
+              </div>
+
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Payload</label>
+                <textarea class="form-control" rows="3" ng-model="message.payload" placeholder="Enter Payload"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Console output</label>
+                <textarea class="form-control" rows="16" ng-bind="output | arrayToString" disabled></textarea>
+              </div>
+
+            </form>
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="button" ng-click="publish()" class="btn btn-info">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </section>
+
+  </div>
+  {% endraw %}
+</div>
+{% endblock %}
+
+{% block script %}
+<!-- include the angular controller script js -->
+<script src="/js/controller/console.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+{% endblock %}
+{% block js %}
+<script>
+</script>
+{% endblock %}

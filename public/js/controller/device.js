@@ -1,6 +1,5 @@
 "use strict";
-angular.module('fpm.c.device', ['fpm.service', 'fpm.filter'])
-  .controller('DeviceCtrl', ['$scope', '$ngFpmcService',
+app.controller('DeviceCtrl', ['$scope', '$ngFpmcService',
     function ($scope, $ngFpmcService) {
         // console.log('aaa', $ngFpmcService);
         const { Func, Query } = $ngFpmcService;

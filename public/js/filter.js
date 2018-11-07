@@ -5,3 +5,8 @@ angular.module('fpm.filter', [])
       return (src === 0) ? '关' : '开';
     };
   })
+  .filter('arrayToString', function () {
+    return function (src) {
+      return src.join('\n');
+    };
+  })

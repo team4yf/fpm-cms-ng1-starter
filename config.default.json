@@ -22,7 +22,8 @@
             "application/x-zip-compressed",
             "image/png",
             "image/jpeg"],
-        "limit": 5
+        "limit": 5,
+        "storage": "disk"
     },
     "mqttserver":
     {
