@@ -20,11 +20,17 @@
     <style>
       .block{display: block; width: 100%;}
       .margin-bottom-2{margin-bottom: 2em;}
+      .img-preview{
+        margin: 0;
+        padding: 0;
+        border: none;
+        width: 100%;
+      }
     </style>
     {% block style %} {% endblock %}
   </head>
   <!-- skin-blue fixed sidebar-mini -->
-  <body class="hold-transition {% block bodyclass %} {% endblock %} {% block collapse %} {% endblock %} ">
+  <body ng-controller="RootCtrl" class="hold-transition {% block bodyclass %} {% endblock %} {% block collapse %} {% endblock %} ">
     {% block body %} {% endblock %}
   </body>
   <!-- jQuery 3 -->
@@ -52,9 +58,9 @@
   </script>
   <script src="/js/filter.js"></script>
   <script src="/js/service.js"></script>
-
+  <script src="/js/app.js"></script>
   {% block script %} {% endblock %}
 
-  <script src="/js/app.js"></script>
+  
   {% block js %} {% endblock %}
 </html>

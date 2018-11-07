@@ -1,6 +1,5 @@
 "use strict";
-angular.module('fpm.c.debuger', ['fpm.service', 'fpm.filter'])
-  .controller('DebugCtrl', ['$scope', '$ngFpmcService', 'kit',
+app.controller('DebugCtrl', ['$scope', '$ngFpmcService', 'kit',
     function ($scope, $ngFpmcService, kit) {
         // console.log('aaa', $ngFpmcService);
         const { Func, Query } = $ngFpmcService;

@@ -1,6 +1,5 @@
 "use strict";
-angular.module('fpm.c.dashboard', ['fpm.service', 'fpm.filter'])
-  .controller('DashboardCtrl', ['$scope', '$ngFpmcService',
+app.controller('DashboardCtrl', ['$scope', '$ngFpmcService',
     function ($scope, $ngFpmcService) {
       echarts.init(document.getElementById('device-chart'))
       .setOption({

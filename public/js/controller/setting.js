@@ -1,6 +1,5 @@
 "use strict";
-angular.module('fpm.c.setting', ['fpm.service', 'fpm.filter'])
-  .controller('SettingCtrl', ['$scope', '$ngFpmcService',
+app.controller('SettingCtrl', ['$scope', '$ngFpmcService',
     function ($scope, $ngFpmcService) {
         // console.log('aaa', $ngFpmcService);
         $scope.user = {

@@ -135,9 +135,9 @@ angular.module('fpm.service', ['ngFpmc', 'io.y+.logger', 'io.y+.user'])
     const Obj = $ngFpmc.Object, Func = $ngFpmc.Function, Query = $ngFpmc.Query;
     return { Obj, Func, Query };
   }])
-  .service('kit', ['$q', 'ylogger', 'yuser',
-  function($q, ylogger, yuser){
-    return {
+  .service('kit', ['$q', 'ylogger', 'yuser', '$http',
+  function($q, ylogger, yuser, $http){
+    const _service = {
       swal: Swal,
       alert: function(message, title = '提示', type = 'info'){
         Swal(
@@ -165,6 +165,41 @@ angular.module('fpm.service', ['ngFpmc', 'io.y+.logger', 'io.y+.user'])
         })
       },
       logger: ylogger,
+      // upload
+      upload: function(dom){
+        var fd = new FormData(); //初始化一个FormData实例
+        fd.append('upload', dom);
+
+        return $http({
+          method:'POST',
+          url: '/upload',
+          headers: {
+            'Content-Type': undefined
+          },
+          transformRequest: angular.identity,
+          data: fd,
+      });
+    }
 
     }
+
+    _service.chooseFile = function(){
+      return _service.swal({
+        title: '选择图片',
+        html: `<img class="img-preview" id="img-preview" />
+        <input type="file" accept="image/*" aria-label="" id="image-file-input" style="display: flex;">`,
+      }).then(function(){
+        return _service.upload(document.querySelector('#image-file-input').files[0])
+      })
+    }
+
+    _service.showPrev = function(file){
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        document.querySelector('#img-preview').src = e.target.result;
+      }
+      reader.readAsDataURL(document.querySelector('#image-file-input').files[0])
+    }
+
+    return _service;
   }]);
