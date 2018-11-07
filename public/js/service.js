@@ -193,7 +193,7 @@ angular.module('fpm.service', ['ngFpmc', 'io.y+.logger', 'io.y+.user'])
       })
     }
 
-    _service.showPrev = function(file){
+    _service.showPrev = function(){
       const reader = new FileReader()
       reader.onload = (e) => {
         document.querySelector('#img-preview').src = e.target.result;

@@ -1,0 +1,20 @@
+{
+  "indent": 2,
+  "asi": true,
+  "boss": true,
+  "lastsemic": false,
+  "white": true,
+  "node": true,
+  "undef": true,
+  "unused": true,
+  "-W058": true,
+  "-W014": true,
+  "expr": true,
+  "strict":true,
+  "esversion": 6,
+  "predef": [ "window", "Swal", "FormData", "FileReader",
+    "angular", "document", "FPM", "_",
+    "async", "LCalendar", "ColorPicker", "CryptoJS",
+    "ClassicEditor", "$",
+    "echarts", "app", "APP", "io"]
+}
