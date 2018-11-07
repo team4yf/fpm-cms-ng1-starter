@@ -10,8 +10,8 @@
     "proxy": "ngrok http 9007",
     "bot": "node fake/bot.js",
     "backup": "python backup.py",
-    "docker": "docker-compose -f docker-compose.dev.yml up --build -d",
-    "docker:restart": "docker-compose -f docker-compose.dev.yml down && npm run docker",
+    "docker": "docker-compose -f docker/docker-compose.dev.yml up --build -d",
+    "docker:restart": "docker-compose -f docker/docker-compose.dev.yml down && npm run docker",
     "build": "gulp"
   },
   "devDependencies": {
