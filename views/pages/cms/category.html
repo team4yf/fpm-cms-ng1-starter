@@ -44,9 +44,9 @@
                     ng-blur="blur_1(a);$event.stopPropagation();"
                     ng-click="$event.stopPropagation();"
                   >
-                  <span class="action" ng-click="$event.stopPropagation();">
+                  <span class="action" ng-click="$event.stopPropagation()">
                     <i class="fa fa-pencil-square-o" style="color:#5BC0DE" title="编辑名称" ng-click="edit_1(a); $event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
-                    <i class="fa fa-plus-circle" style="color:#5CB85C" title="添加二级菜单" ng-click="add_2(a); $event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
+                    <i class="fa fa-plus-circle" style="color:#5CB85C" title="添加二级菜单" ng-click="add_2(a); $event.stopPropagation()">&nbsp;&nbsp;&nbsp;</i>
                     <i class="fa fa-remove" style="color:#D9534F" title="删除" ng-click="remove_1(a); $event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
                   </span>
                 </label>
@@ -54,7 +54,7 @@
               <ul ng-repeat="b in data.second">
                 <li ng-show="a.show && b.del == false">
                   <!-- 二级菜单 -->
-                  <span class="second_span" ng-if="a._d.id == b._d.first_id" ng-click="show_2(b)">
+                  <span class="second_span" ng-if="a._d.id == b._d.parent_id" ng-click="show_2(b)">
                     <i class="fa fa-minus">&nbsp;</i>
                     <span ng-show="b.spanShow">{{b._d.name}}</span>
                     <label class="input_box">
@@ -68,7 +68,7 @@
                         ng-blur="blur_2(b);$event.stopPropagation();"
                         ng-click="$event.stopPropagation();"
                       >
-                      <span class="action">
+                      <span class="action" ng-click="$event.stopPropagation()">
                         <i class="fa fa-pencil-square-o" style="color:#5BC0DE" title="编辑名称" ng-click="edit_2(b);$event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
                         <i class="fa fa-plus-circle" style="color:#5CB85C" title="添加三级菜单" ng-click="add_3(b);$event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
                         <i class="fa fa-remove" style="color:#D9534F" title="删除" ng-click="remove_2(b);$event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
@@ -79,7 +79,7 @@
                   <ul ng-repeat="c in data.third">
                     <li ng-show="b.show && c.del == false">
                       <!-- 三级菜单 -->
-                      <span class="third_span" ng-if="a._d.id == b._d.first_id && b._d.id == c._d.second_id">
+                      <span class="third_span" ng-if="a._d.id == b._d.parent_id && b._d.id == c._d.parent_id">
                         <i class="fa fa-minus">&nbsp;</i>
                         <span ng-show="c.spanShow">{{c._d.name}}</span>
                         <label class="input_box">
@@ -93,7 +93,7 @@
                             ng-blur="blur_3(c);$event.stopPropagation();"
                             ng-click="$event.stopPropagation();"
                           >
-                          <span class="action">
+                          <span class="action" ng-click="$event.stopPropagation();">
                             <i class="fa fa-pencil-square-o" style="color:#5BC0DE" title="编辑名称" ng-click="edit_3(c);$event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
                             <i class="fa fa-remove" style="color:#D9534F" title="删除" ng-click="remove_3(c);$event.stopPropagation();">&nbsp;&nbsp;&nbsp;</i>
                           </span>
@@ -132,10 +132,10 @@
 
 <!-- 引入js -->
 <script src="/js/controller/category.js"></script>
+
 {% endblock %}
 {% block js %}
 <script>
   "use strict";
-  angular.module('app', ['fpm.c.category'])
 </script>
 {% endblock %}

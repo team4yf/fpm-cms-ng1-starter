@@ -1,7 +1,6 @@
 "use strict";
-angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
-  .controller('CategoryCtrl', ['$scope', '$ngFpmcService',
-    function ($scope, $ngFpmcService) {
+
+  app.controller('CategoryCtrl', ['$scope', '$ngFpmcService',function ($scope, $ngFpmcService) {
       
       const { Func, Query, Obj } = $ngFpmcService;
       
@@ -13,37 +12,39 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
 
       $scope.firstData = function(){
          //一级菜单数据
-         var obj = new Query('cms_category_first');
-         obj.find()
-           .then(function (data) {
-             for(var i = 0;i<data.length;i++){
-               data[i].show = true;
-               data[i].num = 0;
-               data[i].spanShow = true;
-               data[i].inputShow = false;
-               data[i].del = false;
-             }
-             $scope.data.first = data;
-             console.log($scope.data);
-           }).catch(function (err) {
-             console.error(err);
-           });
+         var obj = new Query('cms_category');
+         obj.condition(`parent_id = '0'`)
+          .findAndCount()
+            .then(function (data) {
+              for(var i = 0;i<data.rows.length;i++){
+                data.rows[i].show = true;
+                data.rows[i].num = 0;
+                data.rows[i].spanShow = true;
+                data.rows[i].inputShow = false;
+                data.rows[i].del = false;
+              }
+              $scope.data.first = data.rows;
+              console.log($scope.data.first);
+            }).catch(function (err) {
+              console.error(err);
+            });
       }
 
       $scope.secondData = function(){
         //二级菜单数据
-        var obj = new Query('cms_category_second');
-          obj.find()
+        var obj = new Query('cms_category');
+          obj.condition(`parent_id != '0'`)
+            .findAndCount()
             .then(function (data) {
-              for(var i = 0;i<data.length;i++){
-                data[i].show = true;
-                data[i].num = 0;
-                data[i].spanShow = true;
-                data[i].inputShow = false;
-                data[i].del = false;
+              for(var i = 0;i<data.rows.length;i++){
+                data.rows[i].show = true;
+                data.rows[i].num = 0;
+                data.rows[i].spanShow = true;
+                data.rows[i].inputShow = false;
+                data.rows[i].del = false;
               }
-              $scope.data.second = data;
-              console.log($scope.data);
+              $scope.data.second = data.rows;
+              console.log($scope.data.second);
             }).catch(function (err) {
               console.error(err);
             });
@@ -51,17 +52,18 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
 
       $scope.thirdData = function(){
         //三级菜单数据
-        var obj = new Query('cms_category_third');
-          obj.find()
+        var obj = new Query('cms_category');
+          obj.condition(`parent_id != '0'`)
+            .findAndCount()
             .then(function (data) {
-              for(var i = 0;i<data.length;i++){
-                data[i].show = true;
-                data[i].spanShow = true;
-                data[i].inputShow = false;
-                data[i].del = false;
+              for(var i = 0;i<data.rows.length;i++){
+                data.rows[i].show = true;
+                data.rows[i].spanShow = true;
+                data.rows[i].inputShow = false;
+                data.rows[i].del = false;
               }
-              $scope.data.third = data;
-              console.log($scope.data);
+              $scope.data.third = data.rows;
+              console.log($scope.data.third);
             }).catch(function (err) {
               console.error(err);
             });
@@ -96,7 +98,7 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
 
       $scope.add_1 = function(){
         // alert(1);
-        var obj = new Obj('cms_category_first');
+        var obj = new Obj('cms_category');
           obj.set()
             .create()
             .then(function(data){
@@ -126,7 +128,7 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
 
         let id = item._d.id
         console.log(id);
-          var obj = new Obj('cms_category_first',{ id });
+          var obj = new Obj('cms_category',{ id });
             obj.save(item._d)
               .then(function(data){
                 console.log('保存成功');
@@ -139,14 +141,19 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
       // 添加二级菜单
       $scope.add_2 = function (item){
         console.log(item);
-        var first_id = item._d.id
-        var obj = new Obj('cms_category_second');
+        var parent_id = item._d.id
+        var obj = new Obj('cms_category');
           obj.set({
-              first_id:first_id
+            parent_id:parent_id
             })
               .create()
               .then(function(data){
-                item.show = true;
+                item.num = 2;
+                if(item.num % 2 !=0){
+                  item.show = false;
+                }else{
+                  item.show = true;
+                }
                 console.log('添加成功');
                 $scope.secondData();
                 console.log(data);
@@ -162,8 +169,8 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
 
         var count;
         //先判断二级菜单是否有数据，没有数据则执行删除
-        var search = new Query('cms_category_second');
-        search.condition(`first_id = '${id}'`)
+        var search = new Query('cms_category');
+        search.condition(`parent_id = '${id}'`)
           .findAndCount()
           .then(function (data) {
             console.log(data);
@@ -175,7 +182,7 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
               if(!ifRemove){
                 return false;
               }else{
-                var obj = new Obj('cms_category_first', {id});
+                var obj = new Obj('cms_category', {id});
                 obj.remove()
                   .then(function(data){
                     console.log(data);
@@ -221,7 +228,7 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
 
         let id = item._d.id
         console.log(id);
-          var obj = new Obj('cms_category_second',{ id });
+          var obj = new Obj('cms_category',{ id });
             obj.save(item._d)
               .then(function(data){
                 console.log('保存成功');
@@ -234,14 +241,19 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
       // 添加三级菜单
       $scope.add_3 = function (item){
         console.log(item);
-        var second_id = item._d.id
-        var obj = new Obj('cms_category_third');
+        var parent_id = item._d.id
+        var obj = new Obj('cms_category');
           obj.set({
-              second_id:second_id
+            parent_id:parent_id
             })
               .create()
               .then(function(data){
-                item.show = true;
+                item.num = 2;
+                if(item.num % 2 !=0){
+                  item.show = false;
+                }else{
+                  item.show = true;
+                }
                 console.log('添加成功');
                 $scope.thirdData();
                 console.log(data);
@@ -257,8 +269,8 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
 
         var count;
         //先判断三级菜单是否有数据，没有数据则执行删除
-        var search = new Query('cms_category_third');
-        search.condition(`second_id = '${id}'`)
+        var search = new Query('cms_category');
+        search.condition(`parent_id = '${id}'`)
           .findAndCount()
           .then(function (data) {
             console.log(data);
@@ -270,7 +282,7 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
               if(!ifRemove){
                 return false;
               }else{
-                var obj = new Obj('cms_category_second', {id});
+                var obj = new Obj('cms_category', {id});
                 obj.remove()
                   .then(function(data){
                     console.log(data);
@@ -312,7 +324,7 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
 
         let id = item._d.id
         console.log(id);
-          var obj = new Obj('cms_category_third',{ id });
+          var obj = new Obj('cms_category',{ id });
             obj.save(item._d)
               .then(function(data){
                 console.log('保存成功');
@@ -331,7 +343,7 @@ angular.module('fpm.c.category', ['fpm.service', 'fpm.filter'])
           if(!ifRemove){
             return false;
           }else{
-            var obj = new Obj('cms_category_third', {id});
+            var obj = new Obj('cms_category', {id});
             obj.remove()
               .then(function(data){
                 console.log(data);

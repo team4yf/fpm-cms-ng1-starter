@@ -1,5 +1,5 @@
 "use strict";
-appcontroller('DatametaCtrl', ['$scope', '$ngFpmcService',
+app.controller('DatametaCtrl', ['$scope', '$ngFpmcService',
     function ($scope, $ngFpmcService) {
       // $scope.user = {
       //   id : '',
