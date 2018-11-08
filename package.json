@@ -11,6 +11,7 @@
     "bot": "node fake/bot.js",
     "backup": "python backup.py",
     "docker": "docker-compose -f docker/docker-compose.dev.yml up --build -d",
+    "docker:shutdown": "docker-compose -f docker/docker-compose.dev.yml down",
     "docker:restart": "docker-compose -f docker/docker-compose.dev.yml down && npm run docker",
     "build": "gulp"
   },
