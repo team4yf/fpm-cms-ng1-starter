@@ -140,20 +140,20 @@ angular.module('fpm.service', ['ngFpmc', 'io.y+.logger', 'io.y+.user'])
     const _service = {
       swal: Swal,
       alert: function(message, title = '提示', type = 'info'){
-        Swal(
+        return Swal(
           message,
           undefined,
           type
         )
       },
       toast: function(message, length = 2000, type = 'success'){
-          return Swal({
-            position: 'top-end',
-            type: type,
-            title: message,
-            showConfirmButton: false,
-            timer: length
-          })
+        return Swal({
+          position: 'top-end',
+          type: type,
+          title: message,
+          showConfirmButton: false,
+          timer: length
+        })
       },
       confirm: function(message){
         return Swal({

@@ -38,7 +38,7 @@ Prototype: [modao.cc](https://free.modao.cc/app/QVQaMYO4sdMe67xc9rJHRJDhZYLDEE5#
   // import the kit module
   controller('PostCreateCtrl', ['$scope', '$ngFpmcService', 'kit',
     function ($scope, $ngFpmcService, kit) {
-      kit.alert('ok');
+      kit.alert('ok'); // this returns a promise after the toast dismiss
       kit.toast('ok'); // this returns a promise after the toast dismiss
       kit.confirm('Yes or no?')
         .then(function(result){
