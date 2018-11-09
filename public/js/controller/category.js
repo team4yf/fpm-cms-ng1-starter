@@ -197,7 +197,7 @@
               
               
             }else{
-              kit.kit.alert('请先删除子菜单');
+              kit.alert('请先删除子菜单');
             }
 
           }).catch(function (err) {

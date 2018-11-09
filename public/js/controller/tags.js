@@ -101,18 +101,27 @@
 
       // 添加按钮
       $scope.add = function(){
-        const { Func, Obj } = $ngFpmcService;
-          var obj = new Obj('cms_tags');
-            obj.set()
-                .create()
-                .then(function(data){
-                  kit.logger.debug('添加成功');
-                  $scope.loading();
-                  kit.logger.debug(data);
-                }).catch(function(err){
-                  kit.logger.debug(err);
-                });
+        var a = {    "_t": "cms_tags",    "_d": {      "id": 23,      "createAt": 1541727457789,      "updateAt": 1541727457789,      "delflag": 0,      "tagName": "标签名"    },    "objectId": 22,    "spanShow": true,    "inputShow": false,    "tagShow": true  };
+        console.log($scope.data);
+        $scope.data.unshift(a)
+        console.log($scope.data);
+
+        // const { Func, Obj } = $ngFpmcService;
+        //   var obj = new Obj('cms_tags');
+        //     obj.set()
+        //         .create()
+        //         .then(function(data){
+        //           kit.logger.debug('添加成功');
+        //           $scope.loading();
+        //           kit.logger.debug(data);
+        //         }).catch(function(err){
+        //           kit.logger.debug(err);
+        //         });
       }
+
+
+
+
 
     }
   ])

@@ -24,7 +24,7 @@
       <!-- form start -->
       <div class="box-body">
         <div class="tag_box">
-          <div class="tag" ng-repeat="x in data" ng-show="x.tagShow">
+          <div class="tag" ng-repeat="x in data | orderBy:x.index:'desc'" ng-show="x.tagShow">
             <span 
               class="glyphicon glyphicon-remove remove" 
               ng-show="removeShow"
@@ -32,7 +32,7 @@
             >
             </span>
             <label ng-click="click(x)">
-              <span for="input" ng-show="x.spanShow">{{x._d.tagName}}</span>
+              <span ng-show="x.spanShow">{{x._d.tagName}}</span>
               <input 
                 type="text" 
                 placeholder="请输入标签名"
@@ -44,7 +44,15 @@
               >
             </label>
           </div>
-          
+          <div class="tag">
+            <label>
+              <input 
+                type="text" 
+                placeholder="请输入标签名"
+                maxlength="20" 
+              >
+            </label>
+          </div>
           <span class="btn_add" ng-click="add()">
             添加
           </span>
