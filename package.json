@@ -13,6 +13,7 @@
     "docker": "docker-compose -f docker/docker-compose.dev.yml up --build -d",
     "docker:shutdown": "docker-compose -f docker/docker-compose.dev.yml down",
     "docker:restart": "docker-compose -f docker/docker-compose.dev.yml down && npm run docker",
+    "run:pm2": "pm2 start source/app.js --name [yourname] -i 1 -o logs/log.log",
     "build": "gulp"
   },
   "devDependencies": {
