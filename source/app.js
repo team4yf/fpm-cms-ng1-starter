@@ -14,9 +14,6 @@ fpm.run().then( () => {
     // comment this line before publish.
     fpm.set('debug', true);
     fpm.M.init(path.join(fpm.get('CWD'), 'sql'))
-        .then(() => {
-            fpm.logger.info('Sql Script Execute OK')
-        })
         .catch((err) => {
             fpm.logger.error(err)
         })

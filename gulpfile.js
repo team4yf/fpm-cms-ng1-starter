@@ -24,9 +24,17 @@ gulp.task('copy-vender',function(){
       './node_modules/admin-lte/plugins/**'])
       .pipe(gulp.dest('./public/lib/admin-lte/plugins'));
 
-    const yfpmcNg1 = gulp.src([
-      './node_modules/yfpmc-ng1/dist/*'])
-      .pipe(gulp.dest('./public/lib/yfpmc-ng1'));
+    const fpmcsdk = gulp.src([
+      './node_modules/fpmc-jssdk/dist/*'])
+      .pipe(gulp.dest('./public/lib/fpmc-jssdk'));
+
+    const videojs = gulp.src([
+      './node_modules/video.js/dist/*'])
+      .pipe(gulp.dest('./public/lib/videojs'));
+
+    const videojsHls = gulp.src([
+      './node_modules/@videojs/http-streaming/dist/*'])
+      .pipe(gulp.dest('./public/lib/videojs-hls'));
 
     const jquery = gulp.src([
       './node_modules/admin-lte/bower_components/jquery/dist/*.min.*'])
@@ -52,11 +60,23 @@ gulp.task('copy-vender',function(){
       './node_modules/admin-lte/bower_components/fastclick/lib/*'])
       .pipe(gulp.dest('./public/lib/fastclick'));
 
+    const moment = gulp.src([
+      './node_modules/moment/min/*.min.js'])
+      .pipe(gulp.dest('./public/lib/moment'));
+
+    const timepicker = gulp.src([
+      './node_modules/eonasdan-bootstrap-datetimepicker/build/*/*'])
+      .pipe(gulp.dest('./public/lib/datetimepicker'));
+
+    const slider = gulp.src([
+      './node_modules/admin-lte/plugins/bootstrap-slider/*'])
+      .pipe(gulp.dest('./public/lib/slider'));
+
     const jquerySlimscroll = gulp.src([
       './node_modules/admin-lte/bower_components/jquery-slimscroll/*.min.js'])
       .pipe(gulp.dest('./public/lib/jquery-slimscroll'));
 
-    return merge(adminLte, adminLtePlugin, jquery, yfpmcNg1, echarts, sweetalert2, fa, bootstrap, fastclick, jquerySlimscroll);
+    return merge(adminLte, adminLtePlugin, jquery, fpmcsdk, videojs, videojsHls, moment, timepicker, echarts, sweetalert2, fa, bootstrap, fastclick, slider, jquerySlimscroll);
 });
 gulp.task('default', gulp.parallel( 'jshint', 'copy-vender', function(done){
     done();

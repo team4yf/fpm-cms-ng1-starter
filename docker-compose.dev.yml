@@ -1,0 +1,56 @@
+version: '3'
+services:
+  phpmyadmin:
+    image: "phpmyadmin/phpmyadmin"
+    ports:
+      - "88:80"
+    depends_on:
+      - "db"
+    networks:
+      - dev-network
+    restart: always
+  db:
+    image: "mysql:5.6"
+    container_name: "mysqlserver"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/db_init.sql
+      - ./backup/:/var/backup
+      - ./mysqldata/:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+    ports:
+      - "3306:3306"
+    networks:
+      - dev-network
+    restart: always
+  # mongo:
+  #   image: 'mongo'
+  #   container_name: 'mongo_server'
+  #   restart: always
+  #   volumes:
+  #     - ./backup/:/backup/
+  #   ports:
+  #     - 27017:27017  
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: 'admin'
+  #     MONGO_INITDB_ROOT_PASSWORD: 'admin'
+  #   networks:
+  #     - dev-network
+  # manager:
+  #   # mongodb://admin:admin@mongo
+  #   image: 'yfsoftcom/adminmongo'
+  #   restart: always
+  #   ports:
+  #     - 1234:1234
+  #   environment:
+  #     CONN_NAME: 'manager'
+  #     DB_USERNAME: 'admin'
+  #     DB_PASSWORD: 'admin'
+  #     DB_HOST: 'mongo'
+  #     DB_PORT: 27017
+  #   depends_on:
+  #     - 'mongo'
+  #   networks:
+  #     - dev-network
+networks:
+  dev-network:
