@@ -10,6 +10,4 @@ ngrok
 public/lib
 backup/*.sql
 uploads/
-docker/mysqldata
-docker/sql
-docker/backup
+package-lock.json

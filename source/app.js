@@ -9,12 +9,15 @@ backendBuilder(fpm);
 
 frontendBuilder(fpm);
 
-fpm.run().then( () => {
-    console.log('Ready to go...');
-    // comment this line before publish.
-    fpm.set('debug', true);
-    fpm.M.init(path.join(fpm.get('CWD'), 'sql'))
-        .catch((err) => {
-            fpm.logger.error(err)
-        })
+fpm.run().then( async () => {
+  console.log('Ready to go...');
+  // comment this line before publish.
+  fpm.set('debug', true);
+  try {
+    await fpm.M.install(path.join(fpm.get('CWD'), 'sql'))  
+    await fpm.M.install(path.join(fpm.get('CWD'), 'mock'))  
+  } catch (error) {
+    fpm.logger.error(err)
+  }
+  
 });

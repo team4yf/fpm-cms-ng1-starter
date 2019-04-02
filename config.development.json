@@ -5,7 +5,7 @@
     "mysql":
     {
         "host": "localhost",
-        "database": "fpm_project",
+        "database": "fpm_cms",
         "username": "root",
         "password": "root",
         "showSql": true
@@ -27,7 +27,7 @@
     },
     "mqttserver":
     {
-        "host": "mqtt.yunplus.io",
+        "host": "www.ruichen.top",
         "port": 1883,
         "username": "admin",
         "password": "123123123"

@@ -128,41 +128,66 @@ angular.module('io.y+.logger', [])
       return _s;
     }]);
 
-angular.module('fpm.service', ['ngFpmc', 'io.y+.logger', 'io.y+.user'])
-  .service('$ngFpmcService', ['$ngFpmc',
-  function($ngFpmc){
-    $ngFpmc.init({ endpoint: '/api', mode:'DEV',appkey:'123123',masterKey:'123123'});
-    const Obj = $ngFpmc.Object, Func = $ngFpmc.Function, Query = $ngFpmc.Query;
-    return { Obj, Func, Query };
+angular.module('fpm.service', ['io.y+.logger', 'io.y+.user'])
+  .service('$ngFpmcService', [
+  function(){
+    fpmc.init({ endpoint: '/api', appkey:'123123', masterKey:'123123'});
+    return fpmc;
   }])
   .service('kit', ['$q', 'ylogger', 'yuser', '$http',
   function($q, ylogger, yuser, $http){
+    const store = window.localStorage;
     const _service = {
+      store,
+      yuser,
       swal: Swal,
       alert: function(message, title = '提示', type = 'info'){
-        return Swal(
+        Swal(
           message,
           undefined,
           type
         )
       },
       toast: function(message, length = 2000, type = 'success'){
+          return Swal({
+            position: 'top-end',
+            type: type,
+            title: message,
+            showConfirmButton: false,
+            timer: length
+          })
+      },
+      toastError: function(message, length = 2000){
         return Swal({
           position: 'top-end',
-          type: type,
+          type: 'error',
           title: message,
           showConfirmButton: false,
           timer: length
         })
       },
       confirm: function(message){
-        return Swal({
+        var defer = $q.defer();
+        
+        Swal({
           title: message,
           type: 'question',
           showCancelButton: true,
           confirmButtonText: '是',
           cancelButtonText: '否',
         })
+        .then(function(rsp){
+          if(rsp.value === true){
+            defer.resolve(1);
+          }else{
+            defer.reject(0);
+          }
+        })
+        .catch(function(err){
+          defer.reject(err);
+        })
+        return defer.promise;
+        
       },
       logger: ylogger,
       // upload
@@ -193,7 +218,7 @@ angular.module('fpm.service', ['ngFpmc', 'io.y+.logger', 'io.y+.user'])
       })
     }
 
-    _service.showPrev = function(){
+    _service.showPrev = function(file){
       const reader = new FileReader()
       reader.onload = (e) => {
         document.querySelector('#img-preview').src = e.target.result;
