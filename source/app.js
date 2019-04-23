@@ -13,11 +13,15 @@ fpm.run().then( async () => {
   console.log('Ready to go...');
   // comment this line before publish.
   fpm.set('debug', true);
+  try{
+    await fpm.M.install(path.join(fpm.get('CWD'), 'mock')) 
+  }catch(error){
+    fpm.logger.error(error)
+  }
   try {
-    await fpm.M.install(path.join(fpm.get('CWD'), 'sql'))  
-    await fpm.M.install(path.join(fpm.get('CWD'), 'mock'))  
+    await fpm.M.install(path.join(fpm.get('CWD'), 'sql'))   
   } catch (error) {
-    fpm.logger.error(err)
+    fpm.logger.error(error)
   }
   
 });
